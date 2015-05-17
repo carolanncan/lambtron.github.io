@@ -13,7 +13,7 @@ I used IFTTT to send an email to my email address when there is a new Craigslist
 
 ## Mandrill
 
-I [setup a subdomain](http://help.mandrill.com/entries/21699367-Inbound-Email-Processing-Overview) (I added 'to' as the MX record and have it setup on my Mandrill account) responsible to receiving email messages and use Mandrill to parse the inbound email (similar to [how I built the A-List inbound parser](https://andymjiang.wordpress.com/2013/05/15/welcome-to-the-a-list/)). In the below code sample, it is important to note that you must first return a '200' to let Mandrill know that it is the right address to send the POST request of the inbound email.
+I [setup a subdomain](http://help.mandrill.com/entries/21699367-Inbound-Email-Processing-Overview) (I added 'to' as the MX record and have it setup on my Mandrill account) responsible to receiving email messages and use Mandrill to parse the inbound email (similar to [how I built the A-List inbound parser](/welcome-to-the-a-list)). In the below code sample, it is important to note that you must first return a '200' to let Mandrill know that it is the right address to send the POST request of the inbound email.
 
 ```ruby
 require 'mechanize'
