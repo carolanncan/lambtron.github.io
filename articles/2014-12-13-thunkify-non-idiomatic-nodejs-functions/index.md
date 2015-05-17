@@ -20,4 +20,35 @@ Now you can use it as such:
 var res = yield thunkedFunction();
 ```
 
+Here is an example with [`superagent`](http://visionmedia.github.io/superagent/):
+
+```javascript
+var request = require('superagent');
+
+/**
+ * Thunkified POST.
+ */
+
+function post(uri, body) {
+  return function(fn) {
+    request
+      .post(uri)
+      .send(body)
+      .end(fn);
+  };
+};
+
+/**
+ * Thunkified GET.
+ */
+
+function get(uri) {
+  return function(fn) {
+    request
+      .get(uri)
+      .end(fn);
+  };
+};
+```
+
 Enjoy!
