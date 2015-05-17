@@ -25,7 +25,7 @@ The clock.js file defines the singleton process (so as to avoid duplicate jobs q
 
 ## clock.js
 
-```
+```javascript
 // clock.js
 var CronJob = require('cron').CronJob;
 var bot = require('./bot.js');
@@ -40,7 +40,7 @@ new CronJob({
 
 ## bot.js
 
-```
+```javascript
 // bot.js
 module.exports = {
   start: function() { /* do stuff */ }
