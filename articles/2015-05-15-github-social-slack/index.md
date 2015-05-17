@@ -1,5 +1,5 @@
 
-# GitHub Social Slack
+# GitHub Social Slack: Posting GitHub User Events in Slack
 
 Slack is awesome. So is GitHub. Also, GitHub's integration with Slack is neat, but only sends events on a given repo or organization. How cool would it be if we could send updates based on other users (when someone watches a new repo, forks or creates a repo, deploys something, etc.) into Slack?
 
