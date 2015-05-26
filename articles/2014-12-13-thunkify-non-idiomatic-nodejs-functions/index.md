@@ -51,4 +51,15 @@ function get(uri) {
 };
 ```
 
+One other neat thing about thunked functions that if you need to test the expression to see if you are receiving an error, you can access that as such:
+
+```javascript
+var res = yield get('https://www.google.com');
+
+get('https://www.google.com')(function(err, res) {
+  // `res` here is the same as the `res` above
+  // you can also access `err` here
+});
+```
+
 Enjoy!
