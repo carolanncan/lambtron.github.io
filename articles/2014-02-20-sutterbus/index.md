@@ -5,9 +5,7 @@ If you take the muni on a daily basis, it can be a hassle checking bus predictio
 
 ## How to use
 
-Go [here](http://sutterbus.herokuapp.com/) either on your mobile Safari or on a desk top web browser. Select the routes and the bus stops that you primarily frequent. Hit the button and a unique web page will be generated for you.
-
-Feel free to save this URL for your future use.
+Go [here](http://sutterbus.herokuapp.com/) either on your mobile Safari or on a desk top web browser. Select the routes and the bus stops that you primarily frequent. Hit the button and a unique URL will be generated for you (so you should save this one to your home screen to easily retrieve it in the future).
 
 ![](https://raw.githubusercontent.com/lambtron/nextbus/master/readme/readme.png)
 
@@ -16,3 +14,5 @@ Feel free to save this URL for your future use.
 I used [NextBus's XML Feed](http://www.nextbus.com/xmlFeedDocs/NextBusXMLFeed.pdf) to get the muni predictions.
 
 [Demo](http://sutterbus.herokuapp.com). [Source](https://github.com/lambtron/nextbus).
+
+*Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*

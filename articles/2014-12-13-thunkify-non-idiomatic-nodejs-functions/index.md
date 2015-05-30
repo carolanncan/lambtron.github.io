@@ -63,3 +63,5 @@ get("https://www.google.com")(function(err, res) {
 ```
 
 Enjoy!
+
+*Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*

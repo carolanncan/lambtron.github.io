@@ -48,3 +48,5 @@ module.exports = {
 ```
 
 Hope this basic example helps people use Heroku's new custom clock processor to schedule jobs!
+
+*Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*

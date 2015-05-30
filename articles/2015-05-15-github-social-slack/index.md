@@ -16,3 +16,5 @@ Taking this:
 Check the source code below to fork or deploy your own version!
 
 [Source](https://github.com/lambtron/github-social-slack).
+
+*Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*

@@ -15,6 +15,8 @@ Send pictures to a Twilio phone number, which posts it to Twitter. First 10 peop
 - picture is saved to MongoDB
 - URL is generated and hosted on server
 - [@twapchat](https://twitter.com/twapchat) tweets the URL
-- URL listens for views; if 10 views then delete in Mongo, destroy URL, remove tweet
+- the server tracks the number of requests per URL; if 10 views then delete in Mongo, destroy URL, remove tweet
 
 [Demo](http://twapchat.herokuapp.com/). [Source](https://github.com/lambtron/twapchat).
+
+*Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*

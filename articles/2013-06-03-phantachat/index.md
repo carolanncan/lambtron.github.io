@@ -29,3 +29,5 @@ This is still a very simple app. Next steps could be sharing other types of medi
 Suggestions, feedback, and new ideas are always welcome!
 
 [Demo](http://phantachat.herokuapp.com). [Source](https://github.com/lambtron/phantachat).
+
+*Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*

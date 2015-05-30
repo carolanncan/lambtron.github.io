@@ -8,3 +8,5 @@ Since Meerkat's commenting system relies on Twitter (you basically @ the broadca
 In the future, instead of just accepting Venmo, #Chipper would also allow people to sign up with a credit card (via [Stripe connect](https://stripe.com/connect)).
 
 [Demo](http://www.gochipper.com).
+
+*Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*

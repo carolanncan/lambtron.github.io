@@ -161,3 +161,5 @@ Ten long, challenging days later and I am only tripping over myself on the first
 ***Bhavatu Sabba Mangalam -- may all beings be happy.***
 
 *Thanks go to Alvin, Steve, Shelley, and Pauline for reviewing a draft of this entry.*
+
+*Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*

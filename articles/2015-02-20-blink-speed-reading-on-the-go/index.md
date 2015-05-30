@@ -91,3 +91,5 @@ span.pre-pivot {
 ```
 
 [Demo](http://blinkread.herokuapp.com). [Source](https://github.com/lambtron/blink).
+
+*Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*

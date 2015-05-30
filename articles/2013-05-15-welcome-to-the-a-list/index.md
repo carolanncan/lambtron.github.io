@@ -37,6 +37,4 @@ Once you confirmed the email address to allow you to auto forward to it, then yo
 
 That should set it up so that any future email from Southwest with that particular subject will be automatically forwarded to my web app, which should hopefully check you in so you won't have to sit in the back between the two fat, sweaty guys.
 
-I will blog more about the actual code in future posts.
-
-If you have any questions, please let me know!
+*Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*

@@ -152,3 +152,5 @@ Features to add in next version:
 So try it out and let me know what you think!
 
 *Thanks to Jen for the original idea, Yuning for proofreading a draft of this in 30 seconds, as well as Mike and Song who helped out with various engineering aspects of the project.*
+
+*Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*

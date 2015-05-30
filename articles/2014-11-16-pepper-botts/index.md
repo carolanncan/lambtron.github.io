@@ -32,3 +32,5 @@ Pepper Botts brings the Phone Call back - back to your calendar and back on trac
 Tweet me @andyjiang for comments and questions.
 
 *Credits to Josh Bowen for inspiration and contribution to this post.*
+
+*Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*

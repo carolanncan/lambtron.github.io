@@ -171,3 +171,4 @@ The result is Twilio automatically connecting me with the phone number listed on
 
 Now I don't have to be on Craigslist 24/7 to find a suitable apartment listing; I can just wait for my web server to send out emails or phone calls to schedule appointments with Craigslist posts that fit our preferences. Now if there were only a way to automate the showing up, preparing the paper work, competing against other bidders, and the remainder of the apartment leasing process.
 
+*Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*

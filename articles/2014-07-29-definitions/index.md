@@ -28,3 +28,4 @@ It is easy to get confused with the jargon that is emerging from the rapidly gro
 
 “-as-a-service”: You won’t recognize this line item in your expenses a year from now.
 
+*Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*
