@@ -1,5 +1,4 @@
 
-
 # BottomOfProductHunt: The Long-Tail of Product Hunt Posts
 
 ![](https://raw.githubusercontent.com/lambtron/bottomofproducthunt/master/client/img/screenshot.png)
