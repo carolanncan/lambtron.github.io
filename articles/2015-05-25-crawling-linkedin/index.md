@@ -59,3 +59,5 @@ The entirety of the code logic is [here](https://github.com/lambtron/nightmare-l
 With Nightmare, you could even create an HTTP API. Set up a server with endpoints that accept requests, which contains information about a query, let's say an email address, then uses the plugin to search LinkedIn with the email, and ultimately returns to the API user the results.
 
 Of course if LinkedIn notices suspicious activity from your server's IP, it is very likely that they will block any requests from it. In which case it is helpful to limit your use, proxy through other IP addresses, or just hire people from mechanical turk or other crowd service providers to retrieve data from/interface with LinkedIn for you.
+
+*Like what you read? Share this or follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*
