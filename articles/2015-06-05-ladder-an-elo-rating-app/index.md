@@ -51,15 +51,15 @@ Here is the finished product:
 
 ## Other Ping Pong hacks, apps, projects
 
-It is no secret that the Bay Area is full of DIY hackers and 
+It is no secret that any area with a high concentration of nerds, there will organically emerge some kick ass DIY projects around Ping Pong. And the Bay Area is no exception.
 
-### Campaign Monitor
+### [Campaign Monitor](https://www.campaignmonitor.com)
 
 We really respect the team over at Campaign Monitor, not only for just being rad people, but also for taking their ping pong culture _so_ seriously that they actually spun out their in-house ping pong pet project into its own commercial product, [Ping Pong Ninja](http://www.pingpongninja.com/about/).
 
 Read about their ascension into Ping Pong nirvana [here](https://www.campaignmonitor.com/blog/post/3179/we-take-ping-pong-seriously-around-these-parts/).
 
-### Si Digital
+### [Si Digital](http://sidigital.co/)
 
 Sure, tech-minded folks have been chastised for spending resources on solving problems for the 0.01% (you read correctly, the one percent of the one percent), such as [world famine](http://www.herecomestheairplane.co/) and [priviledge distribution](http://welldeserved.me/). I suspect its only because the public has overlooked the tremendous contributions of Si Digital to the Ping Pong world, using RFID tags in the players' bats to track them, tapping buttons under the table to indicate a point, and having giant display screens in the room to keep score.
 
@@ -71,7 +71,7 @@ We plan to hold 5 on 5 Ping Pong tournaments between companies! We just played [
 
 ![](http://i.imgur.com/70h0Wk2.jpg)
 
-Want to challenge the Segment team to a match? Contact me [here](mailto:andy@segment.com?Subject=Ping%20Pong%20Match).
+Want to challenge the Segment team to a match? Contact me [here](mailto:andy@segment.com?Subject=Ping%20Pong%20Match) and we'll get it setup!
 
 [Source](https://www.github.com/lambtron/ladder). [Submit an issue](https://github.com/lambtron/ladder/issues).
 
