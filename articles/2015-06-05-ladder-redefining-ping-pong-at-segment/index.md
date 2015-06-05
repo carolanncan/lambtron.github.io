@@ -1,5 +1,5 @@
 
-# Ladder: A simple Elo rating app
+# Ladder: Redefining Ping Pong at Segment
 
 We take things very seriously here at Segment. But nothing is taken more seriously than our ping pong, which explains why we play on a non-Olympic regulation sized table (that sits snuggly above our junior-sized pool table), in addition to our sole use of [one star balls](http://sports.stackexchange.com/questions/69/why-are-there-different-stars-on-table-tennis-balls). In fact, the Ping Pong culture at Segment is _so_ strong, we even have a dedicated Slack channel for it.
 
@@ -36,13 +36,15 @@ With this, I decided to throw together a derpy app!
 
 There is no better time than working on side projects to experiment with new technologies, so I decided to experiment with [Segment](https://www.segment.com)'s [Deku](https://www.github.com/dekujs/deku), a functional alternative to [ReactJS](https://facebook.github.io/react/).
 
-The front-end is just built with these [components](https://github.com/lambtron/ladder/tree/master/client/js). *A word of caution! This was built using `Deku v0.0.28`, an early beta version; most recommended patterns are probably much different now. To see examples of Deku in action, go [here](https://github.com/stevenmiller888/awesome-deku). To read about the thought process behind creating Deku, go [here](https://segment.com/blog/deku-our-functional-alternative-to-react/).*
+The front-end is just built with these [components](https://github.com/lambtron/ladder/tree/master/client/js). **A word of caution!** *This was built using `Deku v0.0.28`, an early beta version; most recommended patterns are probably much different now. To see examples of Deku in action, go [here](https://github.com/stevenmiller888/awesome-deku). To read about the thought process behind creating Deku, go [here](https://segment.com/blog/deku-our-functional-alternative-to-react/).*
 
 For the server, I decided to use [Koa](https://github.com/koajs/koa) to set up a [few routes](https://github.com/lambtron/ladder/blob/master/server/lib/routes.js) to add and remove players, as well as submit game outcomes.
 
 And here is the finished product:
 
 ![](http://i.imgur.com/wwtLBKV.png)
+
+[Source](https://www.github.com/lambtron/ladder). [Submit an issue](https://github.com/lambtron/ladder/issues).
 
 ## Other Ping Pong hacks, apps, projects
 
@@ -67,7 +69,5 @@ We plan to hold 5 on 5 Ping Pong tournaments between companies! We just played [
 ![](http://i.imgur.com/70h0Wk2.jpg)
 
 Want to challenge the Segment team to a match? Contact me [here](mailto:andy@segment.com?Subject=Ping%20Pong%20Match) and we'll get it setup!
-
-[Source](https://www.github.com/lambtron/ladder). [Submit an issue](https://github.com/lambtron/ladder/issues).
 
 *Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*
