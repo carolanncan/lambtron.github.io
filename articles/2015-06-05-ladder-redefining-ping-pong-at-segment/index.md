@@ -64,6 +64,8 @@ The `server/slack/ranking` file will grab the top five in the Mongo database, fo
 
 For the real-time updates, I also added logic to grab and format the relevant information and then to `POST` to the endpoint whenever a new game outcome is submitted through the app.
 
+*Note that PongBot is currently closed source, because I am lazy and have our Slack token in the repository. Maybe I'll open source it for other teams if there is interest!*
+
 You can deploy your own very easily by following the instructions/using the `Deploy on Heroku` button on the GitHub page (link below).
 
 [Source](https://www.github.com/lambtron/ladder). [Submit an issue](https://github.com/lambtron/ladder/issues).
@@ -90,7 +92,7 @@ We plan to hold 5-on-5 Ping Pong tournaments between companies! We just played [
 
 ![](http://i.imgur.com/70h0Wk2.jpg)
 
-> MountainGoat, representing Segment as #1 seed, putting up a monster of a fight
+> MountainGoat, representing Segment as #1 seed, putting up a monster of a fight. *Photo credit: [Prateek](https://instagram.com/p/2FTRgjNkUE/)*
 
 Want to challenge the Segment team to a match? Contact me [here](mailto:andy@segment.com?Subject=Ping%20Pong%20Match) and we'll get it setup!
 
