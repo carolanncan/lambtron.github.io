@@ -30,7 +30,7 @@ playerA = elo.updateRating(expectedScoreA, 1, playerA);
 playerB = elo.updateRating(expectedScoreB, 0, playerB);
 ```
 
-With this, I decided to throw together a derpy app!
+With this library, I decided to put together a very simple app to maintain the ratings of our Ping Pong players at Segment.
 
 ## Ladder: NodeJS, MongoDB, Koa, Deku
 
@@ -43,6 +43,28 @@ For the server, I decided to use [Koa](https://github.com/koajs/koa) to set up a
 And here is the finished product:
 
 ![](http://i.imgur.com/wwtLBKV.png)
+
+### PongBot
+
+Being a Slack-forward organization, I decided to add some notifications to our beloved #pingpong channel with PongBot:
+
+![](http://i.imgur.com/RqALb1F.png)
+
+I setup PongBot with [Heroku Scheduler](https://addons.heroku.com/scheduler), to send the top five in the ladder to Slack every morning at 9am. I updated the `Makefile` to include the command with which Heroku Scheduler can kick off the request:
+
+```bash
+
+# Push to slack-ranking.
+slack-ranking: node_modules
+    @node --harmony server/slack/ranking
+
+```
+
+The `server/slack/ranking` file will grab the top five in the Mongo database, format it, and then `POST` it to the #pingpong Slack endpoint.
+
+For the real-time updates, I also added logic to grab and format the relevant information and then to `POST` to the endpoint whenever a new game outcome is submitted through the app.
+
+You can deploy your own very easily by following the instructions/using the `Deploy on Heroku` button on the GitHub page (link below).
 
 [Source](https://www.github.com/lambtron/ladder). [Submit an issue](https://github.com/lambtron/ladder/issues).
 
@@ -64,9 +86,11 @@ Read about their unparalleled contributions to the Ping Pong world [here](http:/
 
 ## Next Steps
 
-We plan to hold 5 on 5 Ping Pong tournaments between companies! We just played [Sift Science](https://siftscience.com) a month ago (we lost 3-2) and it was a ton of fun!
+We plan to hold 5-on-5 Ping Pong tournaments between companies! We just played [Sift Science](https://siftscience.com) a month ago (we lost 3-2, unfortunately) and it was a ton of fun!
 
 ![](http://i.imgur.com/70h0Wk2.jpg)
+
+> MountainGoat, representing Segment as #1 seed, putting up a monster of a fight
 
 Want to challenge the Segment team to a match? Contact me [here](mailto:andy@segment.com?Subject=Ping%20Pong%20Match) and we'll get it setup!
 
