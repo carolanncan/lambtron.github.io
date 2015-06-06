@@ -3,18 +3,21 @@
 
 If you've ever written into support at Segment, you've probably received an email from one of us with a whimsical "inspirational" quote appended to the end. But how do we keep the footer quotes different each time? We use a special script with [atext](https://www.trankynam.com/atext/) in order to keep the quotes random and fresh—here is how we do it!
 
-> If you can dream it, you can query it.
-> *Walt Disney*
+> "If you can dream it, you can query it."  
+
+>    *Walt Disney*
+
+..and the response from one of our lovely customers:
 
 ![](http://i.imgur.com/WyDSUES.png)
 
-Copy and paste the below script into your atext!
+Just copy and paste the below script into your atext!
 
 ```
 #!/bin/sh
  
 # Keep this updated when you add or take away quotes on the case list
-num_quotes=18
+num_quotes=15
  
 # Generate a random quote number variable, 'rand'
 rand=$[ ( $RANDOM % $num_quotes ) + 1 ]
