@@ -1,7 +1,7 @@
 
 # Segment Notifications in Slack via Zapier
 
-Yes, we all know that [Slack](https://www.slack.com/) is currently taking over the world. Those wise enough will understand that it is better to embrace our soon to be Overlords, instead of putting up futile resistance. Leveraging Slack's ability for providing easily digestible updates for your team, this step-by-step post will show you how to receive real-time customer event data in Slack with [Segment](https://www.segment.com) and [Zapier](https://zapier.com).
+Yes, we all know that [Slack](https://www.slack.com/) is currently taking over the world. Those wise enough will understand that it is better to embrace our soon to be Overlords, instead of putting up futile resistance. This step-by-step post will show you how to receive real-time, easily digestible, customer event data in Slack with [Segment](https://www.segment.com) and [Zapier](https://zapier.com).
 
 1. Create a [new Zap](https://zapier.com/app/editor)!
     
@@ -34,5 +34,7 @@ Yes, we all know that [Slack](https://www.slack.com/) is currently taking over t
     ![](http://i.imgur.com/ttLwSXq.png)
 
     Boom! Again, you can make this integration as simple or as complex as you'd like. Zapier gives a fair bit of flexibility in the filtering of the triggers, which can be powerful for a team to stay on the pulse of the customers using its app.
+
+And there you have it. Any suggestions, ideas, or comments, please let me know on [Twitter](https://www.twitter.com/andyjiang)!
 
 *Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*
