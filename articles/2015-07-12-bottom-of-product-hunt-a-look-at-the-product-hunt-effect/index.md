@@ -29,7 +29,7 @@ Here is a screenshot of the GA Acquisition > All Traffic > Source/Medium report.
 
 Again, for those smart enough to avoid the analytics industry, a "referrer" is the URL of the previous webpage from which the link was followed. This is automatically done by HTTP requests (in the header), but used widely by analytics tools.
 
-Obviously, the largest bulk of the traffic came from [producthunt.com](https://www.producthunt.com) as a referrer. The second majority is "direct", meaning that people, for reasons beyond all that is holy, visited the site directly in their browser. This is almost all from people, having achieved the "a-ha" moment from being on the bottomofproducthunt.com site, decided to share the URL to their closest enemies as a way to derail their unwavering focus with additional meaningless noise.
+Obviously, the largest bulk of the traffic came from [producthunt.com](https://www.producthunt.com) as a referrer. The second majority is "direct", meaning that people visited the site directly in their browser, which actually means that they clicked on a link sent from other people, who have achieved the "a-ha" moment from being on the bottomofproducthunt.com site and wanted to share it to their closest enemies as a way to derail their unwavering focus with additional meaningless noise.
 
 All of the other referral sources are from the organic, human, certainly not robots "more-free-traffic" domains. It may be considered [referral](https://forums.digitalpoint.com/threads/fake-referral-traffic.2750838/) [spam](http://viget.com/advance/removing-referral-spam-from-google-analytics) to some, but it is this kind of mini affirmation that gets me out of bed in the mornings.
 
