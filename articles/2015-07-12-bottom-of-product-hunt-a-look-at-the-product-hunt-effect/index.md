@@ -17,7 +17,7 @@ Here is a screenshot of the Google Analytics session report. For those of you sa
 
 The first day of being on Product Hunt gave it a whopping 403 sessions, which is 401 more sessions than expected (one from me and one from [@DirtyAnalytics](https://twitter.com/dirtyanalytics)). At an average duration session of 21 seconds, that is ~141 collective minutes of human kind that cannot be returned [#sorrynotsorry](http://media.giphy.com/media/rd4PovI7PgYw0/giphy.gif).
 
-Also, even after Product Hunt fanfare settled, I did not expect sustained traffic, or "lift". There are still daily consistent 20-50 sessions on the site. Though I suspect this is largely from robots, but I will certainly keep an eye on this for the next few months, before I begin putting together my pitch deck and approaching reputable VCs.
+Also, even after Product Hunt fanfare settled, I did not expect sustained traffic, or "lift". There are still daily consistent 20-50 sessions on the site. Though I suspect this is largely from robots, I will certainly keep an eye on this for the next few months, before I begin putting together my pitch deck and approaching reputable VCs.
 
 Being the scrappy growth hacker that I am, I decided to move my mouse cursor further down in the Google Analytics interface and click on "Acquisition" to learn more about where all of this undeserved traffic came from.
 
