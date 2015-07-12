@@ -7,7 +7,7 @@ On June 20th, 2015, I launched [BottomOfProductHunt](http://www.producthunt.com/
 
 [BottomOfProductHunt](http://www.bottomofproducthunt.com) is a single purpose, zero-value-add website that only shows posts on Product Hunt beneath a certain score. It was built as a fun side project, primarily to troll [my friend](https://twitter.com/dirtyanalytics), who is the project's inspiration and muse. As such, I had zero (arguably, negative) expectations about how this site would perform post-Product Hunt launch. Knowing the quirks of Silicon Valley, however, it also would not be out of the question if something like this ends up raising a round of financing, or whatever.
 
-Like any data-minded, analytics-driven troll, I wanted to know _just_ how far reaching my half-baked efforts extended. I added [Segment](https://www.segment.com)'s analytics.js snippet to the page and turned on [Google Analytics](https://analytics.google.com). Since this was essentially a static site, I did not map out any "events" that I wanted to track, so the js snippet alone was enough to track page views.
+Like any data-minded, analytics-driven troll, I wanted to measure _just_ the extent of my half-baked efforts. I added [Segment](https://www.segment.com)'s analytics.js snippet to the page and turned on [Google Analytics](https://analytics.google.com). Since this was essentially a static site, I did not map out any "events" that I wanted to track, so the js snippet alone was enough to track page views.
 
 ## Do you even lift, bro?
 
@@ -41,7 +41,7 @@ Another unusual one is actually [event-tracking.com](http://event-tracking.com/)
 
 Aside from the robots, I see a few [feedly](http://feedly.com/) users, [thenews.im](http://thenews.im/) users, [pulse.me](https://www.pulse.me/) users, [alltechnews.co](http://alltechnews.co/) users, and [Lost Hunts](http://losthunts.com/) users (Bottom of Product Hunt is pretty much a shittier, less-inspired clone of this one). Also a few referrers from Twitter (via this link, [http://t.co/kol9fbT9JJ](http://t.co/kol9fbT9JJ); unfortunately, Twitter won't show me what the original tweet is, but I'm guessing it's [this one](https://twitter.com/ProductHunt/status/612404808109174784)). [Yay, social](http://media.giphy.com/media/kViTiGaoqD0gU/giphy.gif)!
 
-Some domains I did not recognize are [revery.io](http://revery.io/) ("updates from all your favorite sites", still in beta testing), [jianshu.com](http://www.jianshu.com/) (looks like a chinese news aggregator), and [netvibes.com](http://www.netvibes.com/en) ("a dashboard for everything", including probably news stories).
+Some domains I did not recognize are [revery.io](http://revery.io/) ("updates from all your favorite sites", still in beta testing), [jianshu.com](http://www.jianshu.com/) (looks like a Chinese news aggregator), and [netvibes.com](http://www.netvibes.com/en) ("a dashboard for everything", including probably news stories).
 
 There is also one poor soul who came to the site from a Google search. I wonder what stray Google query led to that?
 
