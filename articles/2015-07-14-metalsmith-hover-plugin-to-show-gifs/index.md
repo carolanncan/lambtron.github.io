@@ -56,7 +56,7 @@ One interesting thing to point out is that [you are not able to add inline style
 
 Instead, I [prepended a `style` element](https://github.com/lambtron/metalsmith-hover/blob/master/lib/index.js#L42) with [the `a:hover` css code](https://github.com/lambtron/metalsmith-hover/blob/master/lib/index.js#L71-L77) to the root of the file's HTML, which works. And yes, that is a [`z-index: 99`](http://i.imgur.com/3R8DKRa.jpg) in my CSS code. Hey, I've made it this far in life so I must be doing something right, [right](http://media.giphy.com/media/Gvnh1m87wk2ek/giphy.gif)? [Right](http://media.giphy.com/media/NsJs9nmLwAxag/giphy.gif)?!
 
-[Anyway](http://media.giphy.com/media/8ppnU9unXdula/giphy.gif), the [plugin is now available](https://github.com/lambtron/metalsmith-hover) for any brave soul to use. I only say that because, like *everything* I release into the unforgiving conditions of the wild, it has [no tests](http://media.giphy.com/media/fhWTD7YCd59D2/giphy.gif) (but hey, [it works!](http://www.topito.com/wp-content/uploads/2013/01/code-08.gif)).
+[Anyway](http://media.giphy.com/media/8ppnU9unXdula/giphy.gif), the [plugin is now available](https://github.com/lambtron/metalsmith-hover) for any brave soul to use. I only say that because, like *everything* I release into the [unforgiving conditions of the wild](http://33.media.tumblr.com/df06ab544c2cfddc6fad7242ca1a0fb0/tumblr_inline_nng15xQt631raprkq_500.gif), it has [no tests](http://media.giphy.com/media/fhWTD7YCd59D2/giphy.gif) (but hey, [it works!](http://www.topito.com/wp-content/uploads/2013/01/code-08.gif)).
 
 Install it like:
 
