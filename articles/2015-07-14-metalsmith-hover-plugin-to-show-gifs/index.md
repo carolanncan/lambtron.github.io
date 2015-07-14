@@ -69,7 +69,7 @@ And use it like (assuming the source directory has Markdown files, which I hope 
 ```javascript
 var Metalsmith = require('metalsmith');
 var markdown = require('metalsmith-markdown');
-var hover = require('./lib/index.js');
+var hover = require('metalsmith-hover');
 
 var metalsmith = Metalsmith(__dirname)
   .use(markdown())
