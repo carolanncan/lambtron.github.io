@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Emojipacks: Bulk Uploading Emojis into Slack</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:creator" content="andyjiang">
+    <meta name="twitter:card" content="">
+    <link rel="alternate" type="application/atom+xml" href="atom.xml">
+    <link rel="stylesheet" href="/index.css">
+    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+      analytics.load('425safDNzgGhWwGte2oSmvBDQLrTSycN');
+      }}();
+    </script>
+  </head>
+  <body>
+    <div class="Layout">
+      <div class="Layout-nav">
+        <div class="Profile">
+          <a class="Profile-avatar" href="/"></a>
+          <h1 class="Profile-name Heading Heading--medium"><a href="/">Andy Jiang</a></h4>
+          <p class="Profile-role">Derp Engineer at <a class="Link" href="https://segment.com">Segment</a></p>
+        
+          <ul class="Profile-links">
+            <a class="Profile-link Profile-twitter-link" href="https://twitter.com/andyjiang">Twitter</a>
+            <a class="Profile-link Profile-github-link" href="https://github.com/lambtron">GitHub</a>
+            
+            <a class="Profile-link Profile-linkedin-link" href="https://linkedin.com/in/andyjiang">Dribbble</a>
+            
+            
+            
+            
+            <a class="Profile-link Profile-rss-link" href="/atom.xml">RSS<a>
+          </ul>
+        
+          <a class="Profile-twitter-button twitter-follow-button" href="https://twitter.com/andyjiang" data-show-count="false">Follow @andyjiang</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>      </div>
+      <div class="Layout-main"><article class="Article">
+  <a class="Article-home" href="/">Home</a>
+  <h1 class="Article-title Heading Heading--huge">Emojipacks: Bulk Uploading Emojis into Slack</h1>
+  <time class="Article-date" datetime="2015-07-24T00:00:00.000Z">Thursday, 23 July 2015</time>
+  <div class="Article-content Prose Prose--medium">
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>We can all indisputably agree on that the three best things in the &#x1F30E; are warm blankets, emojis, and <a href="https://www.slack.com">Slack</a>. And when I discovered that I could add my own custom <img width="22px" src="http://i.imgur.com/o7tyjxN.gif" style="display: inline; margin: 0">, <img width="22px" src="http://i.imgur.com/8lLklPJ.gif" style="display: inline; margin: 0">, and <img width="22px" src="http://i.imgur.com/GmcaGmz.gif" style="display: inline; margin: 0"> to <img width="22px" src="http://i.imgur.com/J9yDWph.png" style="display: inline; margin: 0">, it was arguably one of the &#x1F389; &#x1F60D; moments of my short-lived life (barely exceeding a close number two, when I discovered <a href="http://www.cafepress.com/+emojis_throw_blanket,1608034030">this warm blanket</a>). So I built <a href="https://www.github.com/lambtron/emojipacks">emojipacks</a>, a command line interface, to bulk upload emojis into Slack. Let&#x2019;s take a &#x1F440; at the code that accomplishes this &#x2728;&#x1F31F;&#x2728;&#x1F31F; feat.</p>
+<h2 id="-the-beginning">&#x1F476; The Beginning</h2>
+<p>Shortly after I discovered the ability to add custom emojis in Slack, I was hooked like a &#x1F41F; . I &#x1F369; even remember taking a break until the first &#x1F4AF; <img height="22px" src="http://i.imgur.com/yrd45Ky.gif" style="display: inline; margin: 0"> emojis were added. But &#x1F6A2; emoji after emoji inevitably ate away at my entire day at work. Though I managed to enter a rhythm of &#x1F526; for emojis and then uploading them all at once, it still took a long &#x231A;&#xFE0F;. I had to &#x1F6A7; off &#x231B; &#xFE0F;on my &#x1F4C5; just so I was able to have uninterrupted time dedicated to uploading emojis. Not the most glamorous of jobs, but somebody had to do it &#x1F64C; &#x1F4AA; .</p>
+<p>Knowing that <img width="22px" src="http://i.imgur.com/J9yDWph.png" style="display: inline; margin: 0"> is active on <img width="22px" src="http://i.imgur.com/Y8DaHZx.png" style="display: inline; margin: 0"> (they even have a <a href="https://twitter.com/slacklovetweets">@SlackLovesTweets</a> account that just RT&#x2019;s awesome tweets), I decided to &#x1F680; this tweet to <a href="https://www.twitter.com/slack">@Slack</a>:</p>
+<p><blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/SlackHQ">@SlackHQ</a> Hi! We use slack here and love it. Just wondering if you thought about a way to bulk import custom emoticons? :)</p>&#x2014; Andy Jiang (@andyjiang) <a href="https://twitter.com/andyjiang/status/542789755293814784">December 10, 2014</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>They gave me a &#x1F4AC;, but with &#x1F4A9; &#x1F61E; &#x1F4F0;:</p>
+<p><blockquote data-conversation="none" class="twitter-tweet" lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/andyjiang">@andyjiang</a> No way to bulk import emoticons right now but we&apos;ll share the idea with the team! &#x1F4EE;</p>&#x2014; Slack (@SlackHQ) <a href="https://twitter.com/SlackHQ/status/543006206521262080">December 11, 2014</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>So they have a &#x1F454;&#x1F4BC; to &#x1F3C3; and maybe there are way more important things on their product road map &#x1F64A;. <em>Maybe.</em> </p>
+<p>Fortunately for me, the Internet is made of a series of tubes, so there is definitely a way to hack together a solution to accomplish this.</p>
+<h2 id="-emoji-packs">&#x1F4A5; Emoji Packs</h2>
+<p>A few, long &#x1F311; &#x1F313; &#x1F315; &#x1F317; &#x1F31A; of &#x270B; uploading one-off emojis pass. Until one &#x1F31E;, I came across <a href="https://github.com/mootcycle/slackporter">this awesome project</a> on <a href="https://news.ycombinator.com/">Hacker News</a> and was reinspired to &#x1F528;&#x1F527; something to bulk upload emojis.</p>
+<p><a href="https://github.com/mootcycle/slackporter">Slackporter</a> allows you to transfer emojis from one Slack account to another. Super neat. Plus the <a href="https://twitter.com/mootcycle">developer</a> is responsive on Twitter (super nice guy, too)!</p>
+<p>I decided to re-use these &#x1F511; pieces: &#x270A; the user login information, logging in, and submitting the emoji form. I also re-wrote it with <a href="http://koajs.com/">Koa</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators">generators</a>. The result is <a href="https://www.github.com/lambtron/emojipacks">emojipacks</a>!</p>
+<h2 id="-how-this-works">&#x1F529; How this works</h2>
+<p>The script uses <a href="https://github.com/cheeriojs/cheerio">Cheerio</a> for server-side HTML parsing and manipulation and <a href="https://github.com/request/request">Request</a> to submit form requests.</p>
+<p>The first step is to get to this &#x1F4BB;:</p>
+<p><img src="http://i.imgur.com/qUVR6Ko.png" alt=""></p>
+<p>Then, the script grabs some &#x1F47B; form data, such as the sign in value, redirect path, and a unique session crumb. This &#x1F52E; is used later to log into Slack.</p>
+<p><img src="https://cldup.com/BO7qWgzUcF.png" alt=""></p>
+<p>With the form data, we can login to Slack:</p>
+<p><img src="http://i.imgur.com/AV9Wj5u.png" alt=""></p>
+<p><em>Note that this won&#x2019;t ever load, since it is a static HTML file.</em></p>
+<p>After doing so, we can go to the emoji upload page:</p>
+<p><img src="http://i.imgur.com/5rFpsVM.png" alt=""></p>
+<p>Here, we grab an upload crumb from an input field. We&#x2019;ll use this crumb when programmatically submitting the form submit request.</p>
+<h2 id="-debugging">&#x1F50D; Debugging</h2>
+<p>To help me understand which HTML page the script was on, I &#x1F4DD; the Cheerio-generated HTML to <code>&apos;./test/&lt;title&gt;.html&apos;</code> files. Then I could open it up and see where I ended up in the upload emoji flow.</p>
+<p>For example, I would get the HTML on the server, parse it with Cheerio, then &#xFE0F;&#x1F4BE; it to a &#x1F3E1; &#x1F4C1;:</p>
+<pre><code class="lang-javascript">var res = yield request(load);
+var $ = cheerio.load(res[0].body);
+write($(&apos;title&apos;).text(), $.html());
+</code></pre>
+<p>The function <code>write</code> is defined as:</p>
+<pre><code class="lang-javascript">function(title, html) {
+  var test = resolve(__dirname, &apos;../test/&apos; + title + &apos;.html&apos;);
+  fs.writeFileSync(test, html);
+};
+</code></pre>
+<p>After &#x1F3C3; the script, I can go into the <code>./test</code> directory, use this nifty dotfile command <code>server</code>* to spin up a local server in that directory, and check it out with my browser.</p>
+<pre><code class="lang-bash">  &#x1F349; &#x1F349; &#x1F349;  emojipacks-cli (master): cd test
+  &#x1F349; &#x1F349; &#x1F349;  test (master): server
+Serving HTTP on 0.0.0.0 port 4000 ...
+127.0.0.1 - - [25/Jul/2015 08:26:38] &quot;GET / HTTP/1.1&quot; 200 -
+127.0.0.1 - - [25/Jul/2015 08:26:40] &quot;GET /Slack.html HTTP/1.1&quot; 200 -
+</code></pre>
+<p>Then you can browse to see where the script was able to navigate.</p>
+<p><img src="http://i.imgur.com/utp1BQ3.png" alt=""></p>
+<p>*The super convenient <code>server</code> command is taken from my mate Anthony&#x2019;s <a href="https://github.com/anthonyshort/dotfiles/blob/master/bash/functions">dotfiles</a>.</p>
+<h2 id="-next">&#x1F680; Next</h2>
+<p>So there you have it. The only thing next is to make more emoji &#x1F4E6;&#x1F381; and try to find the upper limit in the number of custom emojis you can have in Slack.</p>
+<p>&#x1F30A; you doing today? If you would like to contribute, please <a href="https://20p.typeform.com/to/xOFDyq">suggest an emoji pack</a>!</p>
+<p><a href="https://www.github.com/lambtron/emojipacks">Source</a>. <a href="https://www.emojipacks.com">Demo</a>.</p>
+<p><em>Like what you read? Share this article and follow me on <a href="http://www.twitter.com/andyjiang">Twitter</a> for random musings.</em></p>
+
+  </div>
+</article>
+<script>
+  analytics.page('Article', {
+    article: {
+      name: "Emojipacks: Bulk Uploading Emojis into Slack",
+      date: "2015-07-24T00:00:00.000Z"
+    }
+  });
+</script>
+      </div>
+    </div>
+    <script src="/index.js"></script>
+  </body>
+</html>

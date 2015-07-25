@@ -3,11 +3,83 @@
   <title>Andy Jiang</title>
   <link href="http://blog.andyjiang.com/atom.xml" rel="self"/>
   <link href="http://blog.andyjiang.com"/>
-  <updated>2015-07-25T17:52:54.918Z</updated>
+  <updated>2015-07-25T17:55:00.458Z</updated>
   <id>http://blog.andyjiang.com</id>
   <author>
     <name>Andy Jiang</name>
   </author>
+  <entry>
+    <title>Emojipacks: Bulk Uploading Emojis into Slack</title>
+    <link href="http://blog.andyjiang.com/emojipacks-bulk-uploading-emojis-into-slack"/>
+    <id>http://blog.andyjiang.com/emojipacks-bulk-uploading-emojis-into-slack</id>
+    <updated>2015-07-24T00:00:00.000Z</updated>
+    <author>
+      <name>Andy Jiang</name>
+    </author>
+    <summary type="html">&lt;p&gt;We can all indisputably agree on that the three best things in the 🌎 are warm blankets, emojis, and &lt;a href=&quot;https://www.slack.com&quot;&gt;Slack&lt;/a&gt;. And when I discovered that I could add my own custom &lt;img width=22px src=&#x27;http://i.imgur.com/o7tyjxN.gif&#x27; style=&#x27;display: inline; margin: 0&#x27; /&gt;, &lt;img width=22px src=&#x27;http://i.imgur.com/8lLklPJ.gif&#x27; style=&#x27;display: inline; margin: 0&#x27; /&gt;, and &lt;img width=22px src=&#x27;http://i.imgur.com/GmcaGmz.gif&#x27; style=&#x27;display: inline; margin: 0&#x27; /&gt; to &lt;img width=22px src=&#x27;http://i.imgur.com/J9yDWph.png&#x27; style=&#x27;display: inline; margin: 0&#x27; /&gt;, it was arguably one of the 🎉 😍 moments of my short-lived life (barely exceeding a close number two, when I discovered &lt;a href=&quot;http://www.cafepress.com/+emojis_throw_blanket,1608034030&quot;&gt;this warm blanket&lt;/a&gt;). So I built &lt;a href=&quot;https://www.github.com/lambtron/emojipacks&quot;&gt;emojipacks&lt;/a&gt;, a command line interface, to bulk upload emojis into Slack. Let’s take a 👀 at the code that accomplishes this ✨🌟✨🌟 feat.&lt;/p&gt;
+</summary>
+    <content type="html">&lt;style&gt;
+a &gt; img { display: none; }
+a:hover &gt; img { display: block; position: absolute; z-index: 99 }
+&lt;/style&gt;&lt;p&gt;We can all indisputably agree on that the three best things in the &amp;#x1F30E; are warm blankets, emojis, and &lt;a href=&quot;https://www.slack.com&quot;&gt;Slack&lt;/a&gt;. And when I discovered that I could add my own custom &lt;img width=&quot;22px&quot; src=&quot;http://i.imgur.com/o7tyjxN.gif&quot; style=&quot;display: inline; margin: 0&quot;&gt;, &lt;img width=&quot;22px&quot; src=&quot;http://i.imgur.com/8lLklPJ.gif&quot; style=&quot;display: inline; margin: 0&quot;&gt;, and &lt;img width=&quot;22px&quot; src=&quot;http://i.imgur.com/GmcaGmz.gif&quot; style=&quot;display: inline; margin: 0&quot;&gt; to &lt;img width=&quot;22px&quot; src=&quot;http://i.imgur.com/J9yDWph.png&quot; style=&quot;display: inline; margin: 0&quot;&gt;, it was arguably one of the &amp;#x1F389; &amp;#x1F60D; moments of my short-lived life (barely exceeding a close number two, when I discovered &lt;a href=&quot;http://www.cafepress.com/+emojis_throw_blanket,1608034030&quot;&gt;this warm blanket&lt;/a&gt;). So I built &lt;a href=&quot;https://www.github.com/lambtron/emojipacks&quot;&gt;emojipacks&lt;/a&gt;, a command line interface, to bulk upload emojis into Slack. Let&amp;#x2019;s take a &amp;#x1F440; at the code that accomplishes this &amp;#x2728;&amp;#x1F31F;&amp;#x2728;&amp;#x1F31F; feat.&lt;/p&gt;
+&lt;h2 id=&quot;-the-beginning&quot;&gt;&amp;#x1F476; The Beginning&lt;/h2&gt;
+&lt;p&gt;Shortly after I discovered the ability to add custom emojis in Slack, I was hooked like a &amp;#x1F41F; . I &amp;#x1F369; even remember taking a break until the first &amp;#x1F4AF; &lt;img height=&quot;22px&quot; src=&quot;http://i.imgur.com/yrd45Ky.gif&quot; style=&quot;display: inline; margin: 0&quot;&gt; emojis were added. But &amp;#x1F6A2; emoji after emoji inevitably ate away at my entire day at work. Though I managed to enter a rhythm of &amp;#x1F526; for emojis and then uploading them all at once, it still took a long &amp;#x231A;&amp;#xFE0F;. I had to &amp;#x1F6A7; off &amp;#x231B; &amp;#xFE0F;on my &amp;#x1F4C5; just so I was able to have uninterrupted time dedicated to uploading emojis. Not the most glamorous of jobs, but somebody had to do it &amp;#x1F64C; &amp;#x1F4AA; .&lt;/p&gt;
+&lt;p&gt;Knowing that &lt;img width=&quot;22px&quot; src=&quot;http://i.imgur.com/J9yDWph.png&quot; style=&quot;display: inline; margin: 0&quot;&gt; is active on &lt;img width=&quot;22px&quot; src=&quot;http://i.imgur.com/Y8DaHZx.png&quot; style=&quot;display: inline; margin: 0&quot;&gt; (they even have a &lt;a href=&quot;https://twitter.com/slacklovetweets&quot;&gt;@SlackLovesTweets&lt;/a&gt; account that just RT&amp;#x2019;s awesome tweets), I decided to &amp;#x1F680; this tweet to &lt;a href=&quot;https://www.twitter.com/slack&quot;&gt;@Slack&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;blockquote class=&quot;twitter-tweet&quot; lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&lt;a href=&quot;https://twitter.com/SlackHQ&quot;&gt;@SlackHQ&lt;/a&gt; Hi! We use slack here and love it. Just wondering if you thought about a way to bulk import custom emoticons? :)&lt;/p&gt;&amp;#x2014; Andy Jiang (@andyjiang) &lt;a href=&quot;https://twitter.com/andyjiang/status/542789755293814784&quot;&gt;December 10, 2014&lt;/a&gt;&lt;/blockquote&gt;&lt;/p&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;They gave me a &amp;#x1F4AC;, but with &amp;#x1F4A9; &amp;#x1F61E; &amp;#x1F4F0;:&lt;/p&gt;
+&lt;p&gt;&lt;blockquote data-conversation=&quot;none&quot; class=&quot;twitter-tweet&quot; lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&lt;a href=&quot;https://twitter.com/andyjiang&quot;&gt;@andyjiang&lt;/a&gt; No way to bulk import emoticons right now but we&amp;apos;ll share the idea with the team! &amp;#x1F4EE;&lt;/p&gt;&amp;#x2014; Slack (@SlackHQ) &lt;a href=&quot;https://twitter.com/SlackHQ/status/543006206521262080&quot;&gt;December 11, 2014&lt;/a&gt;&lt;/blockquote&gt;&lt;/p&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;So they have a &amp;#x1F454;&amp;#x1F4BC; to &amp;#x1F3C3; and maybe there are way more important things on their product road map &amp;#x1F64A;. &lt;em&gt;Maybe.&lt;/em&gt; &lt;/p&gt;
+&lt;p&gt;Fortunately for me, the Internet is made of a series of tubes, so there is definitely a way to hack together a solution to accomplish this.&lt;/p&gt;
+&lt;h2 id=&quot;-emoji-packs&quot;&gt;&amp;#x1F4A5; Emoji Packs&lt;/h2&gt;
+&lt;p&gt;A few, long &amp;#x1F311; &amp;#x1F313; &amp;#x1F315; &amp;#x1F317; &amp;#x1F31A; of &amp;#x270B; uploading one-off emojis pass. Until one &amp;#x1F31E;, I came across &lt;a href=&quot;https://github.com/mootcycle/slackporter&quot;&gt;this awesome project&lt;/a&gt; on &lt;a href=&quot;https://news.ycombinator.com/&quot;&gt;Hacker News&lt;/a&gt; and was reinspired to &amp;#x1F528;&amp;#x1F527; something to bulk upload emojis.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/mootcycle/slackporter&quot;&gt;Slackporter&lt;/a&gt; allows you to transfer emojis from one Slack account to another. Super neat. Plus the &lt;a href=&quot;https://twitter.com/mootcycle&quot;&gt;developer&lt;/a&gt; is responsive on Twitter (super nice guy, too)!&lt;/p&gt;
+&lt;p&gt;I decided to re-use these &amp;#x1F511; pieces: &amp;#x270A; the user login information, logging in, and submitting the emoji form. I also re-wrote it with &lt;a href=&quot;http://koajs.com/&quot;&gt;Koa&lt;/a&gt; and &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators&quot;&gt;generators&lt;/a&gt;. The result is &lt;a href=&quot;https://www.github.com/lambtron/emojipacks&quot;&gt;emojipacks&lt;/a&gt;!&lt;/p&gt;
+&lt;h2 id=&quot;-how-this-works&quot;&gt;&amp;#x1F529; How this works&lt;/h2&gt;
+&lt;p&gt;The script uses &lt;a href=&quot;https://github.com/cheeriojs/cheerio&quot;&gt;Cheerio&lt;/a&gt; for server-side HTML parsing and manipulation and &lt;a href=&quot;https://github.com/request/request&quot;&gt;Request&lt;/a&gt; to submit form requests.&lt;/p&gt;
+&lt;p&gt;The first step is to get to this &amp;#x1F4BB;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/qUVR6Ko.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Then, the script grabs some &amp;#x1F47B; form data, such as the sign in value, redirect path, and a unique session crumb. This &amp;#x1F52E; is used later to log into Slack.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cldup.com/BO7qWgzUcF.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;With the form data, we can login to Slack:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/AV9Wj5u.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Note that this won&amp;#x2019;t ever load, since it is a static HTML file.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;After doing so, we can go to the emoji upload page:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/5rFpsVM.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Here, we grab an upload crumb from an input field. We&amp;#x2019;ll use this crumb when programmatically submitting the form submit request.&lt;/p&gt;
+&lt;h2 id=&quot;-debugging&quot;&gt;&amp;#x1F50D; Debugging&lt;/h2&gt;
+&lt;p&gt;To help me understand which HTML page the script was on, I &amp;#x1F4DD; the Cheerio-generated HTML to &lt;code&gt;&amp;apos;./test/&amp;lt;title&amp;gt;.html&amp;apos;&lt;/code&gt; files. Then I could open it up and see where I ended up in the upload emoji flow.&lt;/p&gt;
+&lt;p&gt;For example, I would get the HTML on the server, parse it with Cheerio, then &amp;#xFE0F;&amp;#x1F4BE; it to a &amp;#x1F3E1; &amp;#x1F4C1;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript&quot;&gt;var res = yield request(load);
+var $ = cheerio.load(res[0].body);
+write($(&amp;apos;title&amp;apos;).text(), $.html());
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The function &lt;code&gt;write&lt;/code&gt; is defined as:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript&quot;&gt;function(title, html) {
+  var test = resolve(__dirname, &amp;apos;../test/&amp;apos; + title + &amp;apos;.html&amp;apos;);
+  fs.writeFileSync(test, html);
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After &amp;#x1F3C3; the script, I can go into the &lt;code&gt;./test&lt;/code&gt; directory, use this nifty dotfile command &lt;code&gt;server&lt;/code&gt;* to spin up a local server in that directory, and check it out with my browser.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-bash&quot;&gt;  &amp;#x1F349; &amp;#x1F349; &amp;#x1F349;  emojipacks-cli (master): cd test
+  &amp;#x1F349; &amp;#x1F349; &amp;#x1F349;  test (master): server
+Serving HTTP on 0.0.0.0 port 4000 ...
+127.0.0.1 - - [25/Jul/2015 08:26:38] &amp;quot;GET / HTTP/1.1&amp;quot; 200 -
+127.0.0.1 - - [25/Jul/2015 08:26:40] &amp;quot;GET /Slack.html HTTP/1.1&amp;quot; 200 -
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then you can browse to see where the script was able to navigate.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/utp1BQ3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;*The super convenient &lt;code&gt;server&lt;/code&gt; command is taken from my mate Anthony&amp;#x2019;s &lt;a href=&quot;https://github.com/anthonyshort/dotfiles/blob/master/bash/functions&quot;&gt;dotfiles&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;-next&quot;&gt;&amp;#x1F680; Next&lt;/h2&gt;
+&lt;p&gt;So there you have it. The only thing next is to make more emoji &amp;#x1F4E6;&amp;#x1F381; and try to find the upper limit in the number of custom emojis you can have in Slack.&lt;/p&gt;
+&lt;p&gt;&amp;#x1F30A; you doing today? If you would like to contribute, please &lt;a href=&quot;https://20p.typeform.com/to/xOFDyq&quot;&gt;suggest an emoji pack&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.github.com/lambtron/emojipacks&quot;&gt;Source&lt;/a&gt;. &lt;a href=&quot;https://www.emojipacks.com&quot;&gt;Demo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Like what you read? Share this article and follow me on &lt;a href=&quot;http://www.twitter.com/andyjiang&quot;&gt;Twitter&lt;/a&gt; for random musings.&lt;/em&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Metalsmith-Hover: A Plugin to Show Gifs on Hover</title>
     <link href="http://blog.andyjiang.com/metalsmith-hover-plugin-to-show-gifs"/>
