@@ -1,0 +1,15 @@
+{
+  "name": "escape-html",
+  "description": "Escape HTML entities",
+  "version": "1.0.2",
+  "license": "MIT",
+  "keywords": [
+    "escape",
+    "html",
+    "utility"
+  ],
+  "repo": "component/escape-html",
+  "scripts": [
+    "index.js"
+  ]
+}
