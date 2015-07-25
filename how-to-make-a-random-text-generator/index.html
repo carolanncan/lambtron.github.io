@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>How to Make a Random Text Snippet Generator in atext</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:creator" content="andyjiang">
+    <meta name="twitter:card" content="">
+    <link rel="alternate" type="application/atom+xml" href="atom.xml">
+    <link rel="stylesheet" href="/index.css">
+    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+      analytics.load('425safDNzgGhWwGte2oSmvBDQLrTSycN');
+      }}();
+    </script>
+  </head>
+  <body>
+    <div class="Layout">
+      <div class="Layout-nav">
+        <div class="Profile">
+          <a class="Profile-avatar" href="/"></a>
+          <h1 class="Profile-name Heading Heading--medium"><a href="/">Andy Jiang</a></h4>
+          <p class="Profile-role">Derp Engineer at <a class="Link" href="https://segment.com">Segment</a></p>
+        
+          <ul class="Profile-links">
+            <a class="Profile-link Profile-twitter-link" href="https://twitter.com/andyjiang">Twitter</a>
+            <a class="Profile-link Profile-github-link" href="https://github.com/lambtron">GitHub</a>
+            
+            <a class="Profile-link Profile-linkedin-link" href="https://linkedin.com/in/andyjiang">Dribbble</a>
+            
+            
+            
+            
+            <a class="Profile-link Profile-rss-link" href="/atom.xml">RSS<a>
+          </ul>
+        
+          <a class="Profile-twitter-button twitter-follow-button" href="https://twitter.com/andyjiang" data-show-count="false">Follow @andyjiang</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>      </div>
+      <div class="Layout-main"><article class="Article">
+  <a class="Article-home" href="/">Home</a>
+  <h1 class="Article-title Heading Heading--huge">How to Make a Random Text Snippet Generator in atext</h1>
+  <time class="Article-date" datetime="2015-06-07T00:00:00.000Z">Saturday, 6 June 2015</time>
+  <div class="Article-content Prose Prose--medium">
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>If you&#x2019;ve ever written into support at Segment, you&#x2019;ve probably received an email from one of us with a whimsical &#x201C;inspirational&#x201D; quote appended to the end. But how do we keep the footer quotes different each time? We use a special script with <a href="https://www.trankynam.com/atext/">atext</a> in order to keep the quotes random and fresh&#x2014;here is how we do it!</p>
+<blockquote>
+<p>&#x201C;If you can dream it, you can query it.&#x201D;  </p>
+<p>   <em>Walt Disney</em></p>
+</blockquote>
+<p>..and the response from one of our lovely customers:</p>
+<p><img src="http://i.imgur.com/WyDSUES.png" alt=""></p>
+<p>Just copy and paste the below script into your atext!</p>
+<pre><code>#!/bin/sh
+
+# Keep this updated when you add or take away quotes on the case list
+num_quotes=15
+
+# Generate a random quote number variable, &apos;rand&apos;
+rand=$[ ( $RANDOM % $num_quotes ) + 1 ]
+case $rand in  #BEGIN CASE
+        1) quote=&quot;\&quot;Our greatest weakness lies in giving up in identifying key performance metrics. The most certain way to succeed is always to try one more time.\&quot;
+    Thomas Edison&quot;;;
+        2) quote=&quot;\&quot;If you can dream it, you can query it.\&quot;
+    Walt Disney&quot;;;
+        3) quote=&quot;\&quot;You are never too old to set another goal, to dream a new dream, or to track your business growth with analytics.\&quot;
+    C.S. Lewis&quot;;;
+        4) quote=&quot;\&quot;Keep your eyes on the stars, your feet on the ground, and your customer acquisition cost lower than its lifetime value.\&quot;
+    Theodore Roosevelt&quot;;;
+        5) quote=&quot;\&quot;Great minds discuss business insights; average minds discuss KPIs; small minds discuss metrics.\&quot;
+    Eleanor Roosevelt&quot;;;
+        6) quote=&quot;\&quot;Good artists copy, great artists steal, best artists gain actionable insights from their data.\&quot;
+    Pablo Picasso&quot;;;
+        7) quote=&quot;\&quot;Success is walking from failure to failure with no loss of enthusiasm or data integrity.\&quot;
+    Winston Churchill&quot;;;
+        8) quote=&quot;\&quot;I have not failed. I&apos;ve just found 10,000 KPIs that are meaningless.\&quot;
+    Thomas Edison&quot;;;
+        9) quote=&quot;\&quot;The starting point of all achievement is desire and adding funnel analytics to your website.\&quot;
+    Napoleon&quot;;;
+        10) quote=&quot;\&quot;I find that the harder I work and the better I optimize my conversion funnels, the more luck I seem to have.\&quot;
+    Thomas Jefferson&quot;;;
+        11) quote=&quot;\&quot;The successful warrior is the average man, with laser-like focus and empowering business intelligence reporting tools.\&quot;
+    Bruce Lee&quot;;;
+        12) quote=&quot;\&quot;You must expect great insights in your customer data before you can query them.\&quot;
+    Michael Jordan&quot;;;
+        13) quote=&quot;\&quot;You miss 100% of the your business and growth insights that you don&apos;t query.\&quot;
+    Wayne Gretzky&quot;;;
+    14) quote=&quot;\&quot;Only you can prevent data loss.\&quot;
+    Smokey the Bear&quot;;;
+    15) quote=&quot;\&quot;Strength and conversion funnels are all that I am.\&quot;
+    Gandhi&quot;;;
+esac  # END CASE
+
+# Display the random quote from case statement, and format it to line wrap at 80 characters
+echo &quot;Andy Jiang\n\nSegment | Growth Evangelist
+
+$quote&quot;
+</code></pre><p>Enjoy!</p>
+<p><em>Like what you read? Share this article and follow me on <a href="http://www.twitter.com/andyjiang">Twitter</a> for random musings.</em></p>
+
+  </div>
+</article>
+<script>
+  analytics.page('Article', {
+    article: {
+      name: "How to Make a Random Text Snippet Generator in atext",
+      date: "2015-06-07T00:00:00.000Z"
+    }
+  });
+</script>
+      </div>
+    </div>
+    <script src="/index.js"></script>
+  </body>
+</html>

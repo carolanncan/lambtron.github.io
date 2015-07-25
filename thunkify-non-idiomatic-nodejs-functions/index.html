@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Thunkify Non-idiomatic NodeJS Functions</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:creator" content="andyjiang">
+    <meta name="twitter:card" content="">
+    <link rel="alternate" type="application/atom+xml" href="atom.xml">
+    <link rel="stylesheet" href="/index.css">
+    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+      analytics.load('425safDNzgGhWwGte2oSmvBDQLrTSycN');
+      }}();
+    </script>
+  </head>
+  <body>
+    <div class="Layout">
+      <div class="Layout-nav">
+        <div class="Profile">
+          <a class="Profile-avatar" href="/"></a>
+          <h1 class="Profile-name Heading Heading--medium"><a href="/">Andy Jiang</a></h4>
+          <p class="Profile-role">Derp Engineer at <a class="Link" href="https://segment.com">Segment</a></p>
+        
+          <ul class="Profile-links">
+            <a class="Profile-link Profile-twitter-link" href="https://twitter.com/andyjiang">Twitter</a>
+            <a class="Profile-link Profile-github-link" href="https://github.com/lambtron">GitHub</a>
+            
+            <a class="Profile-link Profile-linkedin-link" href="https://linkedin.com/in/andyjiang">Dribbble</a>
+            
+            
+            
+            
+            <a class="Profile-link Profile-rss-link" href="/atom.xml">RSS<a>
+          </ul>
+        
+          <a class="Profile-twitter-button twitter-follow-button" href="https://twitter.com/andyjiang" data-show-count="false">Follow @andyjiang</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>      </div>
+      <div class="Layout-main"><article class="Article">
+  <a class="Article-home" href="/">Home</a>
+  <h1 class="Article-title Heading Heading--huge">Thunkify Non-idiomatic NodeJS Functions</h1>
+  <time class="Article-date" datetime="2014-12-13T00:00:00.000Z">Friday, 12 December 2014</time>
+  <div class="Article-content Prose Prose--medium">
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>Yes, thunks are great. But what if the Object or Function that you&#x2019;re trying to thunkify doesn&#x2019;t fulfill the idiomatic node.js callback expression <code>function(err, res)</code>?</p>
+<pre><code class="lang-javascript">var thunkedFunction = function() {
+  return function(fn) {
+    unthunkedFunction(function(err, param1, param2, param3) {
+      if (err) fn(err, null);
+      fn(null, { param1: param1, param2: param2, param3: param3 });
+    });
+  };
+};
+</code></pre>
+<p>Now you can use it as such:</p>
+<pre><code class="lang-javascript">var res = yield thunkedFunction();
+</code></pre>
+<p>Here is an example with <a href="http://visionmedia.github.io/superagent/"><code>superagent</code></a>:</p>
+<pre><code class="lang-javascript">var request = require(&apos;superagent&apos;);
+
+/**
+ * Thunkified POST.
+ */
+
+function post(uri, body) {
+  return function(fn) {
+    request
+      .post(uri)
+      .send(body)
+      .end(fn);
+  };
+};
+
+/**
+ * Thunkified GET.
+ */
+
+function get(uri) {
+  return function(fn) {
+    request
+      .get(uri)
+      .end(fn);
+  };
+};
+</code></pre>
+<p>One other neat thing about thunked functions that if you need to test the expression to see if you are receiving an error, you can access that as such:</p>
+<pre><code class="lang-javascript">var res = yield get(&quot;https://www.google.com&quot;);
+
+get(&quot;https://www.google.com&quot;)(function(err, res) {
+  // `res` here is the same as the `res` above
+  // you can also access `err` here
+});
+</code></pre>
+<p>Enjoy!</p>
+<p><em>Like what you read? Share this article and follow me on <a href="http://www.twitter.com/andyjiang">Twitter</a> for random musings.</em></p>
+
+  </div>
+</article>
+<script>
+  analytics.page('Article', {
+    article: {
+      name: "Thunkify Non-idiomatic NodeJS Functions",
+      date: "2014-12-13T00:00:00.000Z"
+    }
+  });
+</script>
+      </div>
+    </div>
+    <script src="/index.js"></script>
+  </body>
+</html>

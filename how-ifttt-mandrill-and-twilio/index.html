@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>How IFTTT, Mandrill, and Twilio is helping me find an apartment in SF</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:creator" content="andyjiang">
+    <meta name="twitter:card" content="">
+    <link rel="alternate" type="application/atom+xml" href="atom.xml">
+    <link rel="stylesheet" href="/index.css">
+    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+      analytics.load('425safDNzgGhWwGte2oSmvBDQLrTSycN');
+      }}();
+    </script>
+  </head>
+  <body>
+    <div class="Layout">
+      <div class="Layout-nav">
+        <div class="Profile">
+          <a class="Profile-avatar" href="/"></a>
+          <h1 class="Profile-name Heading Heading--medium"><a href="/">Andy Jiang</a></h4>
+          <p class="Profile-role">Derp Engineer at <a class="Link" href="https://segment.com">Segment</a></p>
+        
+          <ul class="Profile-links">
+            <a class="Profile-link Profile-twitter-link" href="https://twitter.com/andyjiang">Twitter</a>
+            <a class="Profile-link Profile-github-link" href="https://github.com/lambtron">GitHub</a>
+            
+            <a class="Profile-link Profile-linkedin-link" href="https://linkedin.com/in/andyjiang">Dribbble</a>
+            
+            
+            
+            
+            <a class="Profile-link Profile-rss-link" href="/atom.xml">RSS<a>
+          </ul>
+        
+          <a class="Profile-twitter-button twitter-follow-button" href="https://twitter.com/andyjiang" data-show-count="false">Follow @andyjiang</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>      </div>
+      <div class="Layout-main"><article class="Article">
+  <a class="Article-home" href="/">Home</a>
+  <h1 class="Article-title Heading Heading--huge">How IFTTT, Mandrill, and Twilio is helping me find an apartment in SF</h1>
+  <time class="Article-date" datetime="2013-06-30T00:00:00.000Z">Saturday, 29 June 2013</time>
+  <div class="Article-content Prose Prose--medium">
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>Anyone familiar with the SF apartment market understands the tremendous pain and frustrations in finding an available lease at a reasonable price. We have all heard and shared war stories of the hourly refreshing of Craigslist and bringing all of your bank statements and necessary paperwork to the open house just to win a chance to secure a lease for an apartment. In true SF-technology fashion, I decided to minimize response time to a new choice apartment listings on Craigslist by wiring together <a href="https://ifttt.com/">IFTTT</a>, <a href="https://mandrillapp.com">Mandrill</a>, and <a href="https://www.twilio.com">Twilio</a> to auto respond with an open email and a click-to-call to my phone number and the number in the listing to schedule an appointment.</p>
+<p><em>Note 7/8/2013: Craigslist makes it impossible (please let me know if you were able to get around it) to allow Mechanize to retrieve HTML from Heroku&#x2019;s server. However, it works when I send a request from my local server. If anyone knows why it would make a difference, please leave a comment!</em></p>
+<h2 id="ifttt">IFTTT</h2>
+<p><a href="https://ifttt.com/">IFTTT</a> (&#x2018;If this, then that&#x2019;) allows you to create &#x2018;recipes&#x2019; using the simple conditional structure &#x2018;If this, then that&#x2019; and various <a href="https://ifttt.com/channels">&#x2018;ingredients&#x2019;</a> (i.e. craigslist queries, instagram posts, buzzfeed articles, tweets). It is powerful due to its simplicity and flexibility; it can enable anyone to put the web to work without any programming knowledge.</p>
+<p>I used IFTTT to send an email to my email address when there is a new Craigslist query that matches the me and my roommates&#x2019; apartment listing preferences. This way, any new Craigslist listing that fits the query that I have set will be sent directly to my email inbox.</p>
+<h2 id="mandrill">Mandrill</h2>
+<p>I <a href="http://help.mandrill.com/entries/21699367-Inbound-Email-Processing-Overview">setup a subdomain</a> (I added &#x2018;to&#x2019; as the MX record and have it setup on my Mandrill account) responsible to receiving email messages and use Mandrill to parse the inbound email (similar to <a href="/welcome-to-the-a-list">how I built the A-List inbound parser</a>). In the below code sample, it is important to note that you must first return a &#x2018;200&#x2019; to let Mandrill know that it is the right address to send the POST request of the inbound email.</p>
+<pre><code class="lang-ruby">require &apos;mechanize&apos;
+
+class InboxController &lt; ApplicationController
+  include Mandrill::Rails::WebHookProcessor
+
+  # For the apartment hunt.
+  def parse_inbound_sf_apartment_email
+    # Mandrill needs an ok in order to proceed to POST Mandrill events to this endpoint.
+    if request.head?
+      head :ok
+    else
+      # When receive new IFTTT email, use Mechanize to go to the URL of the listing.
+      # Then get two things:
+      # - anything that resembles a phone number
+      # - a response email address
+      # Afterwards, dial order for all roommates and connect w the broker
+      # Then send a templatized email.
+
+      if params[&apos;mandrill_events&apos;]
+        text_body = &apos;&apos;
+        JSON.parse(params[&apos;mandrill_events&apos;]).each do |raw_event|
+          event = Mandrill::WebHook::EventDecorator[raw_event]
+          text_body = event[&apos;msg&apos;][&apos;text&apos;].to_s
+        end
+
+        # Get the URL of the craigslist listing.
+        url = text_body[/http\:(.*?)\.html/m]
+
+        # Mechanize to get email address and phone number.
+        a = Mechanize.new
+
+        begin
+          craigslist_listing = a.get(url.to_s)
+        rescue ArgumentError
+          # URL is not valid
+          puts &quot;\n\n\n\nURL IS NOT VALID\n\n\n\n&quot;
+          return &quot;error&quot;
+        else
+          # Regex to get email and phone number
+          email_addresses = craigslist_listing.content.to_s.scan(/[\w.!#\$%+-]+@[\w-]+(?:\.[\w-]+)+/).uniq!
+          phone_numbers = craigslist_listing.content.to_s.scan(/\W(\d{3}.?\d{3}.?\d{4})\W/m).uniq! - craigslist_listing.content.to_s.scan(/postingID=(.*?)\W/mi).uniq!
+
+          # &apos;Click-to-call&apos;.
+          phone_numbers.each do |phone_number|
+            # puts phone_number
+            # Make outbound call to 314 (Andy, Jeff, whoever else).
+            # Then, make outbound call to phone number.
+            click_to_call(phone_number[0])
+          end
+
+          # Send templatized email to email_address.
+          email_addresses.each do |email_address|
+            Mailer.email_apartment_listing(email_address, &apos;Apartment listing&apos;).deliver
+          end
+        end
+      end
+      render &apos;app/views/inbox/sfapartments.html&apos;, :formats =&gt; [:html]
+    end
+  end
+end
+</code></pre>
+<p>Once the email is successfully received and parsed, I use the <a href="http://mechanize.rubyforge.org/">Mechanize library</a> to navigate to the Craigslist listing (line 31). Then, a few regex commands to find and scrape an email address (line 34) and a phone number (line 35). With the email address, I use ActionMailer (line 46) to send out a templatized email, cc&#x2019;ing my roommates, asking to schedule an appointment to check out the apartment.</p>
+<h2 id="twilio">Twilio</h2>
+<p>If I was successfully able to scrape a phone number from the Craigslist listing, then Twilio will automatically make two outbound phone calls (one to my mobile phone and one to the number on the listing). Throughout the day, I will be able to pick up my phone at my leisure and speak with somebody (if the call connects on the other end) to schedule an appointment.</p>
+<p>Note that the routing must also be setup in your Rails app (the sample code is not shown here).</p>
+<p>The first step is that we are sending a request to Twilio to initiate a phone call to my phone number (agent_number or &#x2018;555-555-5555&#x2019; in the example below) with dynamic TwiML (Twilio&#x2019;s XML-like proprietary markup language).</p>
+<pre><code class="lang-ruby">require &apos;twilio-ruby&apos;
+
+class InboxController &lt; ApplicationController
+    BASE_URL = &apos;http://www.andyjiang.com/&apos;
+
+    # /click-to-call-request
+    def click_to_call(calling_to)
+        # debugging purposes.
+        twilio_number = &apos;4154444444&apos;
+        calling_to = digits_only(calling_to)
+
+        agent_phone = &apos;5555555555&apos;
+        caller_id = agent_phone
+
+        # When we call the agent (andy + our apartment), we set the caller ID to the party we&apos;re eventually
+        # calling. Why? So you could call them back from normal cellphone later.
+        begin
+            @client = Twilio::REST::Client.new ACCOUNT_SID, AUTH_TOKEN
+            @client.account.calls.create(
+                :from =&gt; twilio_number,
+                :to =&gt; agent_phone,
+                :url =&gt; BASE_URL + &apos;/click-to-call-callscreen?calling_to=&apos; + calling_to + &apos;&amp;caller_id=&apos; + caller_id
+            )
+            puts &quot;click to call initiated.&quot;
+        rescue
+            400
+        end
+
+        render &apos;app/views/inbox/sfapartments.html&apos;, :formats =&gt; [:html] 
+    end
+
+    # /click-to-call-callscreen
+    # This handler receives an HTTP callback from Twilio once the agent has picked up
+    # their phone. It first verifies that they&apos;re ready to receive the call (to avoid
+    # voicemail) and then defers to the final twiml URL.
+    def click_to_call_callscreen
+        @post_to = BASE_URL + &apos;/click-to-call-twiml?calling_to=&apos; + params[&apos;calling_to&apos;] + &apos;&amp;caller_id=&apos; + params[&apos;caller_id&apos;]
+        render :action =&gt; &apos;clicktocallcallscreen.xml.builder&apos;, :layout =&gt; false
+    end
+
+    # /click-to-call-twiml
+    # This handler is fired if the callscreen detected a digit
+    def click_to_call_twiml
+        @calling_to = params[&apos;calling_to&apos;]
+        @caller_id = params[&apos;caller_id&apos;]
+        render :action =&gt; &apos;clicktocall.xml.builder&apos;, :layout =&gt; false
+    end
+
+    def digits_only(string)
+        return string.gsub(/[^[0-9]]/, &quot;&quot;)
+    end
+end
+</code></pre>
+<p>The first dynamic TwiML (line 38 above and &#x2018;clicktocallcallscreen.xml.builder&#x2019; below) tells Twilio to listen, upon a call connecting with my phone (agent_number or &#x2018;555-555-5555&#x2019;), for a keypad response indicating that I want to be connected with the Craigslist lister&#x2019;s phone number. If I hit a key, then proceed to dial the other number and connect us. Note that I am  providing yet another dynamic action URL (&#x2018;@post_to&#x2019;) that will populate the final TwiML with the correct phone numbers that will be connected in the final call.</p>
+<pre><code class="lang-ruby">xml.instruct!
+xml.Response do
+    xml.Gather(:action =&gt; @post_to, :numDigits =&gt; 1, :timeout =&gt; &apos;10&apos;) do
+        xml.Say &quot;Press a key to accept&quot;, :voice =&gt; :woman
+    end
+    xml.Say &quot;You didn&apos;t press anything. Goodbye.&quot;, :voice =&gt; :woman
+    xml.Hangup
+end
+</code></pre>
+<p>It is in line 46 in inbox_controller.rb where the clicktocall.xml.builder (below) is called dynamically (with &#x2018;@calling_to&#x2019; and &#x2018;@caller_id&#x2019; both being passed to the TwiML).</p>
+<pre><code class="lang-ruby">xml.instruct!
+xml.Response do
+    xml.Dial @calling_to, :callerId =&gt; @caller_id
+end
+</code></pre>
+<p>The result is Twilio automatically connecting me with the phone number listed on the Craigslist post. This is a derivation of a very popular Twilio use &#x2018;Click-to-call&#x2019; that many lead management and sales teams use to better engage with their customers.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Now I don&#x2019;t have to be on Craigslist 24/7 to find a suitable apartment listing; I can just wait for my web server to send out emails or phone calls to schedule appointments with Craigslist posts that fit our preferences. Now if there were only a way to automate the showing up, preparing the paper work, competing against other bidders, and the remainder of the apartment leasing process.</p>
+<p><em>Like what you read? Share this article and follow me on <a href="http://www.twitter.com/andyjiang">Twitter</a> for random musings.</em></p>
+
+  </div>
+</article>
+<script>
+  analytics.page('Article', {
+    article: {
+      name: "How IFTTT, Mandrill, and Twilio is helping me find an apartment in SF",
+      date: "2013-06-30T00:00:00.000Z"
+    }
+  });
+</script>
+      </div>
+    </div>
+    <script src="/index.js"></script>
+  </body>
+</html>

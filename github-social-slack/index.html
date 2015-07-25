@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GitHub Social Slack: Posting GitHub User Events in Slack</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:creator" content="andyjiang">
+    <meta name="twitter:card" content="">
+    <link rel="alternate" type="application/atom+xml" href="atom.xml">
+    <link rel="stylesheet" href="/index.css">
+    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+      analytics.load('425safDNzgGhWwGte2oSmvBDQLrTSycN');
+      }}();
+    </script>
+  </head>
+  <body>
+    <div class="Layout">
+      <div class="Layout-nav">
+        <div class="Profile">
+          <a class="Profile-avatar" href="/"></a>
+          <h1 class="Profile-name Heading Heading--medium"><a href="/">Andy Jiang</a></h4>
+          <p class="Profile-role">Derp Engineer at <a class="Link" href="https://segment.com">Segment</a></p>
+        
+          <ul class="Profile-links">
+            <a class="Profile-link Profile-twitter-link" href="https://twitter.com/andyjiang">Twitter</a>
+            <a class="Profile-link Profile-github-link" href="https://github.com/lambtron">GitHub</a>
+            
+            <a class="Profile-link Profile-linkedin-link" href="https://linkedin.com/in/andyjiang">Dribbble</a>
+            
+            
+            
+            
+            <a class="Profile-link Profile-rss-link" href="/atom.xml">RSS<a>
+          </ul>
+        
+          <a class="Profile-twitter-button twitter-follow-button" href="https://twitter.com/andyjiang" data-show-count="false">Follow @andyjiang</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>      </div>
+      <div class="Layout-main"><article class="Article">
+  <a class="Article-home" href="/">Home</a>
+  <h1 class="Article-title Heading Heading--huge">GitHub Social Slack: Posting GitHub User Events in Slack</h1>
+  <time class="Article-date" datetime="2015-05-15T00:00:00.000Z">Thursday, 14 May 2015</time>
+  <div class="Article-content Prose Prose--medium">
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>Slack is awesome. So is GitHub. Also, GitHub&#x2019;s integration with Slack is neat, but only sends events on a given repo or organization. How cool would it be if we could send updates based on other users (when someone watches a new repo, forks or creates a repo, deploys something, etc.) into Slack?</p>
+<p>The use case that inspired this is my side project of side project hackers, 20% Club. I wanted a passive and ambient way to send all of the coding activity into a Slack channel so we can see what new repos others are watching, forking, and creating. At first I was thinking of building an app and having each user auth with their GitHub account, but then realized the easier way would be just to create a new dummy user who just &#x201C;follows&#x201D; everyone&#x2019;s GitHub accounts. Then the dummy user&#x2019;s news feed would be exactly what would be posted into Slack.</p>
+<p>Taking this:</p>
+<p><img src="https://camo.githubusercontent.com/ef6090465557faa52e02076e4684268c652ce047/687474703a2f2f692e696d6775722e636f6d2f694b69756765322e706e67" alt=""></p>
+<p>..and posting it into Slack:</p>
+<p><img src="https://camo.githubusercontent.com/281e140794314d3adcba06a595a5590d828ccc34/687474703a2f2f692e696d6775722e636f6d2f34693866376b772e706e67" alt=""></p>
+<p>Check the source code below to fork or deploy your own version!</p>
+<p><a href="https://github.com/lambtron/github-social-slack">Source</a>.</p>
+<p><em>Like what you read? Share this article and follow me on <a href="http://www.twitter.com/andyjiang">Twitter</a> for random musings.</em></p>
+
+  </div>
+</article>
+<script>
+  analytics.page('Article', {
+    article: {
+      name: "GitHub Social Slack: Posting GitHub User Events in Slack",
+      date: "2015-05-15T00:00:00.000Z"
+    }
+  });
+</script>
+      </div>
+    </div>
+    <script src="/index.js"></script>
+  </body>
+</html>

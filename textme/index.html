@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TextMe: A Bookmarklet That Lets You Send Highlighted Text In Your Browser To Your Phone</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:creator" content="andyjiang">
+    <meta name="twitter:card" content="">
+    <link rel="alternate" type="application/atom+xml" href="atom.xml">
+    <link rel="stylesheet" href="/index.css">
+    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+      analytics.load('425safDNzgGhWwGte2oSmvBDQLrTSycN');
+      }}();
+    </script>
+  </head>
+  <body>
+    <div class="Layout">
+      <div class="Layout-nav">
+        <div class="Profile">
+          <a class="Profile-avatar" href="/"></a>
+          <h1 class="Profile-name Heading Heading--medium"><a href="/">Andy Jiang</a></h4>
+          <p class="Profile-role">Derp Engineer at <a class="Link" href="https://segment.com">Segment</a></p>
+        
+          <ul class="Profile-links">
+            <a class="Profile-link Profile-twitter-link" href="https://twitter.com/andyjiang">Twitter</a>
+            <a class="Profile-link Profile-github-link" href="https://github.com/lambtron">GitHub</a>
+            
+            <a class="Profile-link Profile-linkedin-link" href="https://linkedin.com/in/andyjiang">Dribbble</a>
+            
+            
+            
+            
+            <a class="Profile-link Profile-rss-link" href="/atom.xml">RSS<a>
+          </ul>
+        
+          <a class="Profile-twitter-button twitter-follow-button" href="https://twitter.com/andyjiang" data-show-count="false">Follow @andyjiang</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>      </div>
+      <div class="Layout-main"><article class="Article">
+  <a class="Article-home" href="/">Home</a>
+  <h1 class="Article-title Heading Heading--huge">TextMe: A Bookmarklet That Lets You Send Highlighted Text In Your Browser To Your Phone</h1>
+  <time class="Article-date" datetime="2012-01-09T00:00:00.000Z">Sunday, 8 January 2012</time>
+  <div class="Article-content Prose Prose--medium">
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>TextMe! is straightforward to use: type in your phone number in the field and generate a link that is then dragged to your toolbar. Whenever you want to text yourself something, just highlight it in the browser and click the bookmarklet.</p>
+<h2 id="textme-">TextMe!</h2>
+<p><em>NOTE: Since I am no longer employed at Twilio, my Twilio account is no longer funded and therefore this bookmarklet no longer is operating. However, you can build your own and use your own Twilio account!</em></p>
+<p>A few weeks ago, I built this derpy little bookmarklet that lets you send highlighted text in your browser to your phone as an SMS. My friend Jen actually inspired this app and I realized how useful it would be when I&#x2019;m on my way out and don&#x2019;t want to retype the address of the restaurant into my phone. I also felt that this would be a good project to improve my javascript (I&#x2019;ve never written a bookmarklet), as well as learn to work around Cross-Origin Resource Sharing.</p>
+<p>The technology stack for this project is HTML/css/javascript/jQuery, Rails, Ruby, Heroku.</p>
+<h2 id="things-i-ve-learned">Things I&#x2019;ve Learned</h2>
+<h3 id="bookmarklet-javascript">Bookmarklet Javascript</h3>
+<p>The bookmarklet, essentially, is a function that is executed whenever you click on it. In this case, the function did the following things: attach a script to the HTML document body, execute that appended script, import two functions (&#x201C;getSelText&#x201D; that will capture the highlighted text and &#x201C;sendSMS&#x201D; that will send a POST request to my server, thus sending a request to Twilio to deliver the SMS), and then calling &#x201C;sendSMS&#x201D; that will initiate the SMS delivery.</p>
+<p>Here is the code for the TextMe! landing page. This essentially shows how I took the user&#x2019;s phone number, generated a script (with the particular phone number) that will make the sendSMS call to the server, and put that into an anchor tag that the user can drag to the toolbar. Line 17 is the javascript function that ends up in the bookmarklet that is dragged to the toolbar:</p>
+<pre><code>&lt;section class=&quot;form&quot;&gt;
+    &lt;input type=&quot;text&quot; placeholder=&quot;xxx-xxx-xxxx&quot;&gt;
+    &lt;button type=&quot;submit&quot;&gt;Make my bookmarklet!&lt;/button&gt;
+&lt;/section&gt;
+
+&lt;section id=&quot;bookmarklet-container&quot;&gt;
+    &lt;span&gt;&lt;p&gt;Your link will be generated below and drag it to your toolbar!&lt;/p&gt;&lt;/span&gt;
+    &lt;div id=&quot;bookmarklet&quot;&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    $(document).ready( function() {
+        $(&apos;.form &gt; .btn&apos;).click( function() {
+            var recipient = $(&apos;.form .input-medium&apos;).val();
+            if ( recipient != &quot;&quot; ) {
+                var href = &quot;javascript:(function(){var s=document.createElement(&apos;script&apos;);s.src=&apos;http://www.andy-jiang.com/text2.js&apos;;s.onload=function(){sendSMS(&quot; + recipient + &quot;)};document.body.appendChild(s);})();&quot;;
+                // Make the draggable bookmarklet.
+                var a = document.createElement(&apos;a&apos;);
+                a.title = &quot;TextMe!&quot;;
+                a.innerHTML = &quot;TextMe!&quot;;
+                a.href = href;
+                $(&apos;#bookmarklet&apos;).html(a);
+            }
+        });
+    });
+&lt;/script&gt;
+</code></pre><p>When you click on the bookmarklet after it is dragged on your toolbar, the function appends some javascript to the HTML document and imports the below two functions. Then, once everything is imported successfully, sendSMS is called with the phone number passed as an argument. The function sendSMS will get the selected text and send a request to the server (passing the recipient&#x2019;s phone number and the body of the SMS, which is the highlighted text) to then ultimately send the SMS.</p>
+<pre><code>function getSelText() {
+  var txt = &apos;&apos;;
+  if (window.getSelection) {
+    txt = window.getSelection();
+  } else if (document.getSelection) {
+    txt = document.getSelection();
+  } else if (document.selection) {
+    txt = document.selection.createRange().text;
+  } else return;
+  return txt;
+}
+
+function sendSMS( recipient ) {
+  var body = getSelText();
+
+  if ( body == &apos;&apos; ) {
+    alert(&quot;You have not highlighted anything to send to your phone!&quot;);
+  } else {
+    // Create object.
+    var http = new XMLHttpRequest();
+
+    // POST
+    var data = &quot;recipient=&quot; + recipient + &quot;&amp;body=&quot; + body;
+    var url = &quot;http://www.andy-jiang.com/textme/send_sms/&quot;;
+    http.open(&quot;POST&quot;, url, true);
+    http.setRequestHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded&quot;);
+    http.send(data);
+    alert(&quot;A text was just sent to &quot; + recipient);
+  }
+}
+</code></pre><h3 id="javascript-without-jquery">Javascript without jQuery</h3>
+<p>Because this is a bookmarklet, the intention was to keep it as lightweight with minimal dependencies. As such, it made sense (and was a great challenge) to write all of the bookmarklet javascript without jQuery to help append scripts and traverse the document object model. Note the substantial amount of jQuery used in the first code sample.</p>
+<h3 id="cross-origin-resource-sharing-cors-">Cross-Origin Resource Sharing (CORS)</h3>
+<p>In computing, an important security concept for browser-side programming was what is known as &#x2018;same origin&#x2019; policy. This policy allows scripts running on the same &#x2018;origin&#x2019; (domain, hostname, web server) to access each other&#x2019;s methods, properties, and attributes with no specific restrictions. However, this policy prevents scripts on one domain to access the methods, properties, and attributes of another domain (imagine if you could write some javascript on my hostname that can call methods on another web server&#x2014;there are obvious security implications and risks involved).</p>
+<p>In some instances, it is necessary to pass data from the client side of one hostname to the server of another domain, as is in the case of this bookmarklet. TextMe! attaches and runs a script on any website on the Internet, which takes the highlighted text and POSTs that data to my humble little WEBricks Heroku-hosted web server. In these cases, CORS is one modern way of allowing for these interactions to happen.</p>
+<p>CORS defines a specific way to allow for cross-domain requests to occur. The browser making the cross-domain request to the server has to pass an &#x2018;Origin HTTP header&#x2019;, indicating its domain. Then, the web server responds with an &#x2018;Access-Control-Allow-Origin&#x2019; header with a value denoting which origin sites are allowed.</p>
+<p>Please see the example from my server side Ruby code below. Line 33 an onward shows the header response with &#x2018;Access-Control-Allow-Origin: *&#x2019;, meaning to allow every cross-domain request.</p>
+<pre><code>require &apos;rubygems&apos;
+require &apos;twilio-ruby&apos;
+require &apos;net/http&apos;
+require &apos;uri&apos;
+require &apos;json&apos;
+
+class TwilioController &lt; ApplicationController
+  TWILIO_ACCOUNT_SID = &apos;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&apos;
+  TWILIO_ACCOUNT_TOKEN = &apos;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&apos;
+  SENDER_NUMBER = &apos;+xxxxxxxxxx&apos;
+
+  def send_sms
+    set_access_control_headers
+    head :ok
+
+    # Get recipient phone number from POST.
+    number = params[&quot;recipient&quot;]
+
+    # Get body from POST.
+    body = params[&quot;body&quot;]
+
+    # Send sms.
+    twilio_client = Twilio::REST::Client.new TWILIO_ACCOUNT_SID, TWILIO_ACCOUNT_TOKEN
+    twilio_client.account.sms.messages.create(
+      :from =&gt; &quot;#{SENDER_NUMBER}&quot;,
+      :to   =&gt; &quot;#{number}&quot;,
+      :body =&gt; &quot;#{body}&quot;
+    )
+    render :file =&gt; &apos;app/views/twiliocon/index.html&apos;
+  end
+
+  private
+  def set_access_control_headers
+    headers[&apos;Access-Control-Allow-Origin&apos;] = &apos;*&apos;
+    headers[&apos;Access-Control-Allow-Method&apos;] = &apos;POST, GET, OPTIONS&apos;
+    headers[&apos;Access-Control-Max-Age&apos;] = &apos;1278000&apos;
+    render :json =&gt; { :success =&gt; true }
+    end
+end
+</code></pre><p>Note that I didn&#x2019;t include any phone number validation, which should probably be included to some extent.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>For a quick project, TextMe! certainly challenged me in new areas and helped me learn as a developer. Understanding how bookmarklets worked, writing jQuery-free javascript, and getting a better grasp of Cross-Origin Resource Sharing proved to be achievable, yet challenging goals.</p>
+<p>Features to add in next version:</p>
+<ul>
+<li>easier to drag the bookmarklet to the toolbar</li>
+<li>form validation for the phone number!</li>
+</ul>
+<p>So try it out and let me know what you think!</p>
+<p><em>Thanks to Jen for the original idea, Yuning for proofreading a draft of this in 30 seconds, as well as Mike and Song who helped out with various engineering aspects of the project.</em></p>
+<p><em>Like what you read? Share this article and follow me on <a href="http://www.twitter.com/andyjiang">Twitter</a> for random musings.</em></p>
+
+  </div>
+</article>
+<script>
+  analytics.page('Article', {
+    article: {
+      name: "TextMe: A Bookmarklet That Lets You Send Highlighted Text In Your Browser To Your Phone",
+      date: "2012-01-09T00:00:00.000Z"
+    }
+  });
+</script>
+      </div>
+    </div>
+    <script src="/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Nightmare-LinkedIn: Crawling LinkedIn and Creating a LinkedIn API</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:creator" content="andyjiang">
+    <meta name="twitter:card" content="">
+    <link rel="alternate" type="application/atom+xml" href="atom.xml">
+    <link rel="stylesheet" href="/index.css">
+    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+      analytics.load('425safDNzgGhWwGte2oSmvBDQLrTSycN');
+      }}();
+    </script>
+  </head>
+  <body>
+    <div class="Layout">
+      <div class="Layout-nav">
+        <div class="Profile">
+          <a class="Profile-avatar" href="/"></a>
+          <h1 class="Profile-name Heading Heading--medium"><a href="/">Andy Jiang</a></h4>
+          <p class="Profile-role">Derp Engineer at <a class="Link" href="https://segment.com">Segment</a></p>
+        
+          <ul class="Profile-links">
+            <a class="Profile-link Profile-twitter-link" href="https://twitter.com/andyjiang">Twitter</a>
+            <a class="Profile-link Profile-github-link" href="https://github.com/lambtron">GitHub</a>
+            
+            <a class="Profile-link Profile-linkedin-link" href="https://linkedin.com/in/andyjiang">Dribbble</a>
+            
+            
+            
+            
+            <a class="Profile-link Profile-rss-link" href="/atom.xml">RSS<a>
+          </ul>
+        
+          <a class="Profile-twitter-button twitter-follow-button" href="https://twitter.com/andyjiang" data-show-count="false">Follow @andyjiang</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>      </div>
+      <div class="Layout-main"><article class="Article">
+  <a class="Article-home" href="/">Home</a>
+  <h1 class="Article-title Heading Heading--huge">Nightmare-LinkedIn: Crawling LinkedIn and Creating a LinkedIn API</h1>
+  <time class="Article-date" datetime="2015-05-25T00:00:00.000Z">Sunday, 24 May 2015</time>
+  <div class="Article-content Prose Prose--medium">
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>LinkedIn in true LinkedIn fashion has shut off its API for developers to use. But that&#x2019;s ok&#x2014;we all knew this day was coming! Regardless, the inter webs allows us additional alternatives to programmatically grab the data that we need.</p>
+<p><a href="http://www.nightmarejs.org/">Nightmare</a> is a high-level wrapper for PhantomJS (created right here at <a href="https://www.segment.com/">Segment</a>) to help us automate various web tasks that did not have an API. Nightmare not only makes it much easier to write and maintain code for virtual browsing, but also provides a platform to build <a href="https://github.com/segmentio/nightmare#plugins">plugins</a> to repeat automated sequences in a single call.</p>
+<p><a href="https://github.com/lambtron/nightmare-linkedin">Nightmare-LinkedIn</a> is a LinkedIn plugin that allows you to easily interface with LinkedIn&#x2019;s website. A few methods that are exposed include <code>.login()</code>, <code>.search()</code>, <code>.filter()</code>, <code>.crawl()</code>, and <code>.connect()</code>. Here is a quick example of how to use this plugin with Nightmare to login to your CEO&#x2019;s LinkedIn account and then view two pages the profiles of product managers in United States (with the intent that the users whom the bot has crawled will see your CEO viewing his/her profile):</p>
+<pre><code class="lang-javascript">
+/**
+ * Dependencies.
+ */
+
+var Nightmare = require(&apos;nightmare&apos;);
+var LinkedIn = require(&apos;nightmare-linkedin&apos;);
+var nightmare = new Nightmare();
+
+/**
+ * Set variables.
+ */
+
+var email = &apos;ceo@startup.com&apos;;
+var password = &apos;selltoproductmanagers&apos;;
+var type = &apos;people&apos;;
+var query = &apos;product manager&apos;;
+var filter = [&apos;United States&apos;];
+var pages = 2;
+
+/**
+ * Set nightmare commands.
+ */
+
+nightmare
+
+  // Login to LinkedIn.
+  .use(LinkedIn.login(email, password))
+
+  // Search for something and set the types of results.
+  .use(LinkedIn.search(type, query))
+
+  // Filter the search results for &apos;United States&apos;.
+  .use(LinkedIn.filter(filter))
+
+  // Crawl results for two pages.
+  .use(LinkedIn.crawl(pages))
+
+  // Execute commands.
+  .run(done);
+</code></pre>
+<h2 id="writing-the-linkedin-nightmare-plugin">Writing the LinkedIn Nightmare plugin</h2>
+<p>The entirety of the code logic is <a href="https://github.com/lambtron/nightmare-linkedin/blob/master/index.js">here</a>.</p>
+<h2 id="creating-an-api">Creating an API</h2>
+<p>With Nightmare, you could even create an HTTP API. Set up a server with endpoints that accept requests, which contains information about a query, let&#x2019;s say an email address, then uses the plugin to search LinkedIn with the email, and ultimately returns to the API user the results.</p>
+<p>Of course if LinkedIn notices suspicious activity from your server&#x2019;s IP, it is very likely that they will block any requests from it. In which case it is helpful to limit your use, proxy through other IP addresses, or just hire people from mechanical turk or other crowd service providers to retrieve data from/interface with LinkedIn for you.</p>
+<p><em>Like what you read? Share this or follow me on <a href="http://www.twitter.com/andyjiang">Twitter</a> for random musings.</em></p>
+
+  </div>
+</article>
+<script>
+  analytics.page('Article', {
+    article: {
+      name: "Nightmare-LinkedIn: Crawling LinkedIn and Creating a LinkedIn API",
+      date: "2015-05-25T00:00:00.000Z"
+    }
+  });
+</script>
+      </div>
+    </div>
+    <script src="/index.js"></script>
+  </body>
+</html>

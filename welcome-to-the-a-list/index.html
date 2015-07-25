@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to the A-List</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:creator" content="andyjiang">
+    <meta name="twitter:card" content="">
+    <link rel="alternate" type="application/atom+xml" href="atom.xml">
+    <link rel="stylesheet" href="/index.css">
+    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+      analytics.load('425safDNzgGhWwGte2oSmvBDQLrTSycN');
+      }}();
+    </script>
+  </head>
+  <body>
+    <div class="Layout">
+      <div class="Layout-nav">
+        <div class="Profile">
+          <a class="Profile-avatar" href="/"></a>
+          <h1 class="Profile-name Heading Heading--medium"><a href="/">Andy Jiang</a></h4>
+          <p class="Profile-role">Derp Engineer at <a class="Link" href="https://segment.com">Segment</a></p>
+        
+          <ul class="Profile-links">
+            <a class="Profile-link Profile-twitter-link" href="https://twitter.com/andyjiang">Twitter</a>
+            <a class="Profile-link Profile-github-link" href="https://github.com/lambtron">GitHub</a>
+            
+            <a class="Profile-link Profile-linkedin-link" href="https://linkedin.com/in/andyjiang">Dribbble</a>
+            
+            
+            
+            
+            <a class="Profile-link Profile-rss-link" href="/atom.xml">RSS<a>
+          </ul>
+        
+          <a class="Profile-twitter-button twitter-follow-button" href="https://twitter.com/andyjiang" data-show-count="false">Follow @andyjiang</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>      </div>
+      <div class="Layout-main"><article class="Article">
+  <a class="Article-home" href="/">Home</a>
+  <h1 class="Article-title Heading Heading--huge">Welcome to the A-List</h1>
+  <time class="Article-date" datetime="2013-05-15T00:00:00.000Z">Tuesday, 14 May 2013</time>
+  <div class="Article-content Prose Prose--medium">
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>Recently, a conversation over dinner about personal life hacks without the direct intention of blatant commercialism spawned a neat idea that scratches an itch that us west coast jet setters face occasionally&#x2014;not only just checking into Southwest flights, but also checking into those flights as early as possible to attain a highly coveted &#x2018;A-list&#x2019; boarding group.</p>
+<p>There have been too many times when the 24 hour period prior to the flight occurs when I&#x2019;m away from my computer. This <a href="http://www.andyjiang.com/sw">web application</a>, however, will check into your Southwest flight for you.</p>
+<p>Instead of going to a <a href="http://checkintomyflight.com/">website</a> where you input the information necessary for you to check in (name and confirmation number), you now can you just forward your Southwest flight confirmation email (the one with the subject that says &#x2018;Your trip is right around the corner!&#x2019;) to sw@to.andyjiang.com. Then, when the 24 hour check in window opens up, the web application will check in to the flight for you.</p>
+<p><em>Note (7/01/2013): Southwest asked me to take down the app! Happy hacking everyone!</em></p>
+<p><em>Note (5/31/2013): Recently, this app was featured in <a href="http://lifehacker.com/southwest-a-list-automatically-checks-you-into-southwes-510333096">Lifehacker</a>. Kindly note that this app is still in beta and there are probably many bugs that have yet to surface themselves (one such obvious one is checking in multiple passengers, as I wrote this for me and my buddies and didn&#x2019;t have children to buy tickets and for whom to check-in). If you do run into any issues or have any feedback, feel free to tweet at me @andyjiang or comment on this blog post and I will make a note of it.</em></p>
+<h2 id="how-does-the-app-work-">How does the app work?</h2>
+<p>The Mandrill (hosted by Mailchimp) server receives an inbound email and sends a POST request to the web server. The web server then extracts the text from the body of the email from the POST request and runs several regular expressions on it to get the following pieces of information: first name, last name, confirmation number, your email address, the URL it needs to go to in order to check in for you. It saves this data into a Mongo database (MongoHQ add-on with Heroku).</p>
+<p>An hourly task runs on the server (Heroku Scheduler) to look at all of the records in the mongo database; for each record, if it is time to check in, the web server  uses the Mechanize library to get and parse the HTML of the confirmation web site, fill in the required information, and check in for you. Then it takes your boarding group and boarding position and sends you a confirmation email.</p>
+<h2 id="tools-i-used">Tools I used</h2>
+<p>Since debugging is 90% of any project, it is important to learn to break the project into small, achievable goals, to quickly isolate problems and to iterate through working solutions. Below is a list of some of the tools I used to test quickly and build out the application.</p>
+<p><a href="http://rubular.com/"><strong>Rubular</strong></a>: Regular expressions were critical to parsing the body of the inbound email. This nifty website allows you to test all of your regexp patterns against Strings of your choice. Combined with <a href="http://en.wikipedia.org/wiki/Interactive_Ruby_Shell">IRB</a> and <a href="http://ruby-doc.org/core-2.0/Class.html"><code>.class?</code></a>, you can very quickly determine the right commands to extract the information needed from the text.</p>
+<p><a href="http://progrium.com/localtunnel/"><strong>Localtunnel</strong></a>: Localtunnel, hosted by Twilio, allows you to expose an endpoint on your local server to receive HTTP requests from other servers. This is important when you are using a service that will send you <a href="http://en.wikipedia.org/wiki/Webhook">webhooks</a> (Twilio, Mandrill inbound emails, etc.), so you don&#x2019;t have to push your changes to a production server in order to test whether your app correctly processes the POST request to your endpoint. With Localtunnel, you just follow the instructions on the <a href="http://progrium.com/localtunnel/">site</a>, copy and paste the localtunnel URL/endpoint generated (tied to your local server), and provide it to the web service so it knows the address to send its request, thereby allowing you to test locally.</p>
+<p><strong>View Elements in Developer Tools</strong>: In Chrome (Firefox and Safari, also), you can view the HTML document of each page you are on by going to View &gt; Developer &gt; Developer Tools (or Option + Command + I). This is important when you are using <a href="http://mechanize.rubyforge.org/">Mechanize</a>, which allows you to parse HTML given the HTML element, id, class, name, etc. I would test code by using <a href="http://en.wikipedia.org/wiki/Interactive_Ruby_Shell">IRB</a>, initialize a Mechanize object, open up the browser, and navigate the web from the terminal.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Feedback is always welcome. If you think you are going to forget to use this next time you fly Southwest, go into your Gmail account right now and set up an instant email forwarding. Go to your Gmail&#x2019;s Settings &gt; Forwarding and POP/IMAP &gt; Forwarding, then select Add a Forwarding Address. Type in &#x201C;sw@to.andyjiang.com&#x201D; and send the verification email that will contain the confirmation code.</p>
+<p>You will receive shortly an email that will provide you with the confirmation code that you can enter in the above field. The return email will also include a link that you can just click on to verify and confirm sw@to.andyjiang.com as the new forwarded email address.</p>
+<p>Once you confirmed the email address to allow you to auto forward to it, then you will have to set up the filter for the right emails to be auto forwarded. Click on the link in the tip &#x2018;You can also forward only some of your mail by creating a filter!&#x2019; and then either copy and paste &#x201C;from:southwest subject:(Your trip is around the corner)&#x201D; into your Gmail search bar or use the template in your &#x2018;Show Search Options&#x2019; drop down below.</p>
+<p>That should set it up so that any future email from Southwest with that particular subject will be automatically forwarded to my web app, which should hopefully check you in so you won&#x2019;t have to sit in the back between the two fat, sweaty guys.</p>
+<p><em>Like what you read? Share this article and follow me on <a href="http://www.twitter.com/andyjiang">Twitter</a> for random musings.</em></p>
+
+  </div>
+</article>
+<script>
+  analytics.page('Article', {
+    article: {
+      name: "Welcome to the A-List",
+      date: "2013-05-15T00:00:00.000Z"
+    }
+  });
+</script>
+      </div>
+    </div>
+    <script src="/index.js"></script>
+  </body>
+</html>

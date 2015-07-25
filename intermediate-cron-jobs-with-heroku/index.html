@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Intermediate Cron Jobs with Heroku</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:creator" content="andyjiang">
+    <meta name="twitter:card" content="">
+    <link rel="alternate" type="application/atom+xml" href="atom.xml">
+    <link rel="stylesheet" href="/index.css">
+    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+      analytics.load('425safDNzgGhWwGte2oSmvBDQLrTSycN');
+      }}();
+    </script>
+  </head>
+  <body>
+    <div class="Layout">
+      <div class="Layout-nav">
+        <div class="Profile">
+          <a class="Profile-avatar" href="/"></a>
+          <h1 class="Profile-name Heading Heading--medium"><a href="/">Andy Jiang</a></h4>
+          <p class="Profile-role">Derp Engineer at <a class="Link" href="https://segment.com">Segment</a></p>
+        
+          <ul class="Profile-links">
+            <a class="Profile-link Profile-twitter-link" href="https://twitter.com/andyjiang">Twitter</a>
+            <a class="Profile-link Profile-github-link" href="https://github.com/lambtron">GitHub</a>
+            
+            <a class="Profile-link Profile-linkedin-link" href="https://linkedin.com/in/andyjiang">Dribbble</a>
+            
+            
+            
+            
+            <a class="Profile-link Profile-rss-link" href="/atom.xml">RSS<a>
+          </ul>
+        
+          <a class="Profile-twitter-button twitter-follow-button" href="https://twitter.com/andyjiang" data-show-count="false">Follow @andyjiang</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>      </div>
+      <div class="Layout-main"><article class="Article">
+  <a class="Article-home" href="/">Home</a>
+  <h1 class="Article-title Heading Heading--huge">Intermediate Cron Jobs with Heroku</h1>
+  <time class="Article-date" datetime="2014-11-04T00:00:00.000Z">Monday, 3 November 2014</time>
+  <div class="Article-content Prose Prose--medium">
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>We all know that Heroku has made app deployment as easy as git push heroku master (and, indirectly, educating the vast majority of junior junior devs a tiny sliver of git). Heroku even went ahead and built out an ecosystem of tools to help developers easily add services to their apps.</p>
+<ul>
+<li>Want to add a datastore? You can enable Redis to Mongo to Postgres.</li>
+<li>How about logging? Keen.io, Flydata, Logentries can help out.</li>
+<li>Monitoring? Again, you have Librato, Airbrake, New Relic, and Bugsnag, among others.</li>
+<li>Want to run schedule jobs? Well, there is Heroku Scheduler.</li>
+</ul>
+<p>Yes, but if you&#x2019;ve ever played with Heroku Scheduler, it unfortunately is very limited in flexibility, especially in the range and variety with which you can schedule jobs: only in 10 minute, 60 minute, or 24 hour intervals.</p>
+<p>Heroku recently came out with clock processes for custom job scheduling. Here is some example code in nodejs to help demonstrate how it works.</p>
+<p>In your Procfile, you define for Heroku the clock and the worker process, as such.</p>
+<h2 id="procfile-">Procfile:</h2>
+<pre><code>web: node server.js
+worker: node bot.js
+clock: node clock.js
+</code></pre><p>The clock.js file defines the singleton process (so as to avoid duplicate jobs queueing and complicated locking logic), whose only function is to schedule a task to the worker process. You can use any library to do so, but here we use npm&#x2019;s cron. The task that is executed is assigned to onTick.</p>
+<h2 id="clock-js">clock.js</h2>
+<pre><code class="lang-javascript">// clock.js
+var CronJob = require(&apos;cron&apos;).CronJob;
+var bot = require(&apos;./bot.js&apos;);
+
+new CronJob({
+  cronTime: &quot;13 9,11,16,20,22 * * *&quot;, // everyday, 9:13, 11:13, 4:13, 8:13,
+  onTick: bot.start(),
+  start: true,
+  timeZone: &quot;America/Los_Angeles&quot;
+});
+</code></pre>
+<h2 id="bot-js">bot.js</h2>
+<pre><code class="lang-javascript">// bot.js
+module.exports = {
+  start: function() { /* do stuff */ }
+};
+</code></pre>
+<p>Hope this basic example helps people use Heroku&#x2019;s new custom clock processor to schedule jobs!</p>
+<p><em>Like what you read? Share this article and follow me on <a href="http://www.twitter.com/andyjiang">Twitter</a> for random musings.</em></p>
+
+  </div>
+</article>
+<script>
+  analytics.page('Article', {
+    article: {
+      name: "Intermediate Cron Jobs with Heroku",
+      date: "2014-11-04T00:00:00.000Z"
+    }
+  });
+</script>
+      </div>
+    </div>
+    <script src="/index.js"></script>
+  </body>
+</html>
