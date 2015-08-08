@@ -10,10 +10,11 @@
    * Require `name`.
    *
    * @param {String} name
+   * @param {Boolean} jumped
    * @api public
    */
 
-  function require(name){
+  function require(name, jumped){
     if (cache[name]) return cache[name].exports;
     if (modules[name]) return call(name, require);
     throw new Error('cannot find module "' + name + '"');
@@ -29,26 +30,21 @@
    */
 
   function call(id, require){
-    var m = cache[id] = { exports: {} };
+    var m = { exports: {} };
     var mod = modules[id];
     var name = mod[2];
     var fn = mod[0];
-    var threw = true;
 
-    try {
-      fn.call(m.exports, function(req){
-        var dep = modules[id][1][req];
-        return require(dep || req);
-      }, m, m.exports, outer, modules, cache, entries);
-      threw = false;
-    } finally {
-      if (threw) {
-        delete cache[id];
-      } else if (name) {
-        // expose as 'name'.
-        cache[name] = cache[id];
-      }
-    }
+    fn.call(m.exports, function(req){
+      var dep = modules[id][1][req];
+      return require(dep || req);
+    }, m, m.exports, outer, modules, cache, entries);
+
+    // store to cache after successful resolve
+    cache[id] = m;
+
+    // expose as `name`.
+    if (name) cache[name] = cache[id];
 
     return cache[id].exports;
   }
@@ -95,8 +91,8 @@
  * Dependencies.
  */
 
-require('./lib/profile');
-require('./lib/summary');
+require('./client/lib/profile');
+require('./client/lib/summary');
 
 /**
  * Code highlighting.
@@ -118,7 +114,8 @@ require('segmentio/highlight')()
   .use(require('segmentio/highlight-xml'))
   .use(require('segmentio/highlight-yaml'))
   .all();
-}, {"./lib/profile":2,"./lib/summary":3,"segmentio/highlight":4,"segmentio/highlight-bash":5,"segmentio/highlight-csharp":6,"segmentio/highlight-css":7,"segmentio/highlight-go":8,"segmentio/highlight-java":9,"segmentio/highlight-javascript":10,"segmentio/highlight-json":11,"segmentio/highlight-objective-c":12,"segmentio/highlight-php":13,"segmentio/highlight-python":14,"segmentio/highlight-ruby":15,"segmentio/highlight-sql":16,"segmentio/highlight-xml":17,"segmentio/highlight-yaml":18}],
+
+}, {"./client/lib/profile":2,"./client/lib/summary":3,"segmentio/highlight":4,"segmentio/highlight-bash":5,"segmentio/highlight-csharp":6,"segmentio/highlight-css":7,"segmentio/highlight-go":8,"segmentio/highlight-java":9,"segmentio/highlight-javascript":10,"segmentio/highlight-json":11,"segmentio/highlight-objective-c":12,"segmentio/highlight-php":13,"segmentio/highlight-python":14,"segmentio/highlight-ruby":15,"segmentio/highlight-sql":16,"segmentio/highlight-xml":17,"segmentio/highlight-yaml":18}],
 2: [function(require, module, exports) {
 
 /**

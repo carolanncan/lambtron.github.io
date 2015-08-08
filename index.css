@@ -72,24 +72,24 @@
 
 @font-face {
   font-family: 'Freight Sans';
-  src: url('ui/base/freight-sans/woff2/freight-sans-light.woff2') format('woff2'),
-       url('ui/base/freight-sans/woff/freight-sans-light.woff') format('woff');
+  src: url('client/ui/base/freight-sans/woff2/freight-sans-light.woff2') format('woff2'),
+       url('client/ui/base/freight-sans/woff/freight-sans-light.woff') format('woff');
   font-style: normal;
   font-weight: 200;
 }
 
 @font-face {
   font-family: 'Freight Sans';
-  src: url('ui/base/freight-sans/woff2/freight-sans-light-italic.woff2') format('woff2'),
-       url('ui/base/freight-sans/woff/freight-sans-light-italic.woff') format('woff');
+  src: url('client/ui/base/freight-sans/woff2/freight-sans-light-italic.woff2') format('woff2'),
+       url('client/ui/base/freight-sans/woff/freight-sans-light-italic.woff') format('woff');
   font-style: italic;
   font-weight: 200;
 }
 
 @font-face {
   font-family: 'Freight Sans Small Caps';
-  src: url('ui/base/freight-sans/woff2/freight-sans-light-small-caps.woff2') format('woff2'),
-       url('ui/base/freight-sans/woff/freight-sans-light-small-caps.woff') format('woff');
+  src: url('client/ui/base/freight-sans/woff2/freight-sans-light-small-caps.woff2') format('woff2'),
+       url('client/ui/base/freight-sans/woff/freight-sans-light-small-caps.woff') format('woff');
   font-style: normal;
   font-weight: 200;
 }
@@ -100,24 +100,24 @@
 
 @font-face {
   font-family: 'Freight Sans';
-  src: url('ui/base/freight-sans/woff2/freight-sans-book.woff2') format('woff2'),
-       url('ui/base/freight-sans/woff/freight-sans-book.woff') format('woff');
+  src: url('client/ui/base/freight-sans/woff2/freight-sans-book.woff2') format('woff2'),
+       url('client/ui/base/freight-sans/woff/freight-sans-book.woff') format('woff');
   font-style: normal;
   font-weight: 400;
 }
 
 @font-face {
   font-family: 'Freight Sans';
-  src: url('ui/base/freight-sans/woff2/freight-sans-book-italic.woff2') format('woff2'),
-       url('ui/base/freight-sans/woff/freight-sans-book-italic.woff') format('woff');
+  src: url('client/ui/base/freight-sans/woff2/freight-sans-book-italic.woff2') format('woff2'),
+       url('client/ui/base/freight-sans/woff/freight-sans-book-italic.woff') format('woff');
   font-style: italic;
   font-weight: 400;
 }
 
 @font-face {
   font-family: 'Freight Sans Small Caps';
-  src: url('ui/base/freight-sans/woff2/freight-sans-book-small-caps.woff2') format('woff2'),
-       url('ui/base/freight-sans/woff/freight-sans-book-small-caps.woff') format('woff');
+  src: url('client/ui/base/freight-sans/woff2/freight-sans-book-small-caps.woff2') format('woff2'),
+       url('client/ui/base/freight-sans/woff/freight-sans-book-small-caps.woff') format('woff');
   font-style: normal;
   font-weight: 400;
 }
@@ -128,24 +128,24 @@
 
 @font-face {
   font-family: 'Freight Sans';
-  src: url('ui/base/freight-sans/woff2/freight-sans-medium.woff2') format('woff2'),
-       url('ui/base/freight-sans/woff/freight-sans-medium.woff') format('woff');
+  src: url('client/ui/base/freight-sans/woff2/freight-sans-medium.woff2') format('woff2'),
+       url('client/ui/base/freight-sans/woff/freight-sans-medium.woff') format('woff');
   font-style: normal;
   font-weight: 500;
 }
 
 @font-face {
   font-family: 'Freight Sans';
-  src: url('ui/base/freight-sans/woff2/freight-sans-medium-italic.woff2') format('woff2'),
-       url('ui/base/freight-sans/woff/freight-sans-medium-italic.woff') format('woff');
+  src: url('client/ui/base/freight-sans/woff2/freight-sans-medium-italic.woff2') format('woff2'),
+       url('client/ui/base/freight-sans/woff/freight-sans-medium-italic.woff') format('woff');
   font-style: italic;
   font-weight: 500;
 }
 
 @font-face {
   font-family: 'Freight Sans Small Caps';
-  src: url('ui/base/freight-sans/woff2/freight-sans-medium-small-caps.woff2') format('woff2'),
-       url('ui/base/freight-sans/woff/freight-sans-medium-small-caps.woff') format('woff');
+  src: url('client/ui/base/freight-sans/woff2/freight-sans-medium-small-caps.woff2') format('woff2'),
+       url('client/ui/base/freight-sans/woff/freight-sans-medium-small-caps.woff') format('woff');
   font-style: normal;
   font-weight: 500;
 }
@@ -156,24 +156,24 @@
 
 @font-face {
   font-family: 'Freight Sans';
-  src: url('ui/base/freight-sans/woff2/freight-sans-bold.woff2') format('woff2'),
-       url('ui/base/freight-sans/woff/freight-sans-bold.woff') format('woff');
+  src: url('client/ui/base/freight-sans/woff2/freight-sans-bold.woff2') format('woff2'),
+       url('client/ui/base/freight-sans/woff/freight-sans-bold.woff') format('woff');
   font-style: normal;
   font-weight: 700;
 }
 
 @font-face {
   font-family: 'Freight Sans';
-  src: url('ui/base/freight-sans/woff2/freight-sans-bold-italic.woff2') format('woff2'),
-       url('ui/base/freight-sans/woff/freight-sans-bold-italic.woff') format('woff');
+  src: url('client/ui/base/freight-sans/woff2/freight-sans-bold-italic.woff2') format('woff2'),
+       url('client/ui/base/freight-sans/woff/freight-sans-bold-italic.woff') format('woff');
   font-style: italic;
   font-weight: 700;
 }
 
 @font-face {
   font-family: 'Freight Sans Small Caps';
-  src: url('ui/base/freight-sans/woff2/freight-sans-bold-small-caps.woff2') format('woff2'),
-       url('ui/base/freight-sans/woff/freight-sans-bold-small-caps.woff') format('woff');
+  src: url('client/ui/base/freight-sans/woff2/freight-sans-bold-small-caps.woff2') format('woff2'),
+       url('client/ui/base/freight-sans/woff/freight-sans-bold-small-caps.woff') format('woff');
   font-style: normal;
   font-weight: 700;
 }
@@ -184,24 +184,24 @@
 
 @font-face {
   font-family: 'Freight Sans';
-  src: url('ui/base/freight-sans/woff2/freight-sans-black.woff2') format('woff2'),
-       url('ui/base/freight-sans/woff/freight-sans-black.woff') format('woff');
+  src: url('client/ui/base/freight-sans/woff2/freight-sans-black.woff2') format('woff2'),
+       url('client/ui/base/freight-sans/woff/freight-sans-black.woff') format('woff');
   font-style: normal;
   font-weight: 900;
 }
 
 @font-face {
   font-family: 'Freight Sans';
-  src: url('ui/base/freight-sans/woff2/freight-sans-black-italic.woff2') format('woff2'),
-       url('ui/base/freight-sans/woff/freight-sans-black-italic.woff') format('woff');
+  src: url('client/ui/base/freight-sans/woff2/freight-sans-black-italic.woff2') format('woff2'),
+       url('client/ui/base/freight-sans/woff/freight-sans-black-italic.woff') format('woff');
   font-style: italic;
   font-weight: 900;
 }
 
 @font-face {
   font-family: 'Freight Sans Small Caps';
-  src: url('ui/base/freight-sans/woff2/freight-sans-black-small-caps.woff2') format('woff2'),
-       url('ui/base/freight-sans/woff/freight-sans-black-small-caps.woff') format('woff');
+  src: url('client/ui/base/freight-sans/woff2/freight-sans-black-small-caps.woff2') format('woff2'),
+       url('client/ui/base/freight-sans/woff/freight-sans-black-small-caps.woff') format('woff');
   font-style: normal;
   font-weight: 900;
 }
@@ -212,8 +212,8 @@
 
 @font-face {
   font-family: 'Droid Sans Mono';
-  src: url('ui/base/droid-sans-mono/woff2/droid-sans-mono.woff2') format('woff2'),
-       url('ui/base/droid-sans-mono/woff/droid-sans-mono.woff') format('woff');
+  src: url('client/ui/base/droid-sans-mono/woff2/droid-sans-mono.woff2') format('woff2'),
+       url('client/ui/base/droid-sans-mono/woff/droid-sans-mono.woff') format('woff');
   font-style: normal;
   font-weight: 400;
 }
@@ -1836,7 +1836,7 @@ html {
   right: 100%;
   margin-right: 5px;
   text-indent: -9999px;
-  background-image: url('lib/article/images/home@2x.png');
+  background-image: url('client/lib/article/images/home@2x.png');
   background-size: contain;
 }
 
@@ -1847,7 +1847,7 @@ html {
 }
 
 .Article-home:hover {
-  background-image: url('lib/article/images/home-green@2x.png');
+  background-image: url('client/lib/article/images/home-green@2x.png');
 }
 
 /**
@@ -1920,7 +1920,7 @@ html {
   display: inline-block;
   padding-left: 25px;
   height: 16px;
-  background-image: url('lib/summary/images/link@2x.png');
+  background-image: url('client/lib/summary/images/link@2x.png');
   background-size: contain;
   background-position: 7px center;
   background-repeat: no-repeat;
@@ -1936,7 +1936,7 @@ html {
 
 .Summary-external-link[data-domain="segment.com"]::after {
   color: #70BF5A;
-  background-image: url('lib/summary/images/link-green@2x.png');
+  background-image: url('client/lib/summary/images/link-green@2x.png');
 }
 
 /**
@@ -2061,37 +2061,37 @@ html {
  */
 
 .Profile-dribbble-link {
-  background-image: url('lib/profile/images/dribbble@2x.png');
+  background-image: url('client/lib/profile/images/dribbble@2x.png');
 }
 
 .Profile-email-link {
-  background-image: url('lib/profile/images/email@2x.png');
+  background-image: url('client/lib/profile/images/email@2x.png');
 }
 
 .Profile-facebook-link {
-  background-image: url('lib/profile/images/facebook@2x.png');
+  background-image: url('client/lib/profile/images/facebook@2x.png');
 }
 
 .Profile-instagram-link {
-  background-image: url('lib/profile/images/instagram@2x.png');
+  background-image: url('client/lib/profile/images/instagram@2x.png');
 }
 
 .Profile-github-link {
-  background-image: url('lib/profile/images/github@2x.png');
+  background-image: url('client/lib/profile/images/github@2x.png');
 }
 
 .Profile-linkedin-link {
-  background-image: url('lib/profile/images/linkedin@2x.png');
+  background-image: url('client/lib/profile/images/linkedin@2x.png');
 }
 
 .Profile-rss-link {
-  background-image: url('lib/profile/images/rss@2x.png');
+  background-image: url('client/lib/profile/images/rss@2x.png');
 }
 
 .Profile-tumblr-link {
-  background-image: url('lib/profile/images/tumblr@2x.png');
+  background-image: url('client/lib/profile/images/tumblr@2x.png');
 }
 
 .Profile-twitter-link {
-  background-image: url('lib/profile/images/twitter@2x.png');
+  background-image: url('client/lib/profile/images/twitter@2x.png');
 }

@@ -43,10 +43,7 @@
   <h1 class="Article-title Heading Heading--huge">Thunkify Non-idiomatic NodeJS Functions</h1>
   <time class="Article-date" datetime="2014-12-13T00:00:00.000Z">Friday, 12 December 2014</time>
   <div class="Article-content Prose Prose--medium">
-    <style>
-a > img { display: none; }
-a:hover > img { display: block; position: absolute; z-index: 99 }
-</style><p>Yes, thunks are great. But what if the Object or Function that you&#x2019;re trying to thunkify doesn&#x2019;t fulfill the idiomatic node.js callback expression <code>function(err, res)</code>?</p>
+    <p>Yes, thunks are great. But what if the Object or Function that you’re trying to thunkify doesn’t fulfill the idiomatic node.js callback expression <code>function(err, res)</code>?</p>
 <pre><code class="lang-javascript">var thunkedFunction = function() {
   return function(fn) {
     unthunkedFunction(function(err, param1, param2, param3) {
@@ -60,7 +57,7 @@ a:hover > img { display: block; position: absolute; z-index: 99 }
 <pre><code class="lang-javascript">var res = yield thunkedFunction();
 </code></pre>
 <p>Here is an example with <a href="http://visionmedia.github.io/superagent/"><code>superagent</code></a>:</p>
-<pre><code class="lang-javascript">var request = require(&apos;superagent&apos;);
+<pre><code class="lang-javascript">var request = require(&#39;superagent&#39;);
 
 /**
  * Thunkified POST.

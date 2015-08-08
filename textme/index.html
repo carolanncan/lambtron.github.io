@@ -43,18 +43,15 @@
   <h1 class="Article-title Heading Heading--huge">TextMe: A Bookmarklet That Lets You Send Highlighted Text In Your Browser To Your Phone</h1>
   <time class="Article-date" datetime="2012-01-09T00:00:00.000Z">Sunday, 8 January 2012</time>
   <div class="Article-content Prose Prose--medium">
-    <style>
-a > img { display: none; }
-a:hover > img { display: block; position: absolute; z-index: 99 }
-</style><p>TextMe! is straightforward to use: type in your phone number in the field and generate a link that is then dragged to your toolbar. Whenever you want to text yourself something, just highlight it in the browser and click the bookmarklet.</p>
+    <p>TextMe! is straightforward to use: type in your phone number in the field and generate a link that is then dragged to your toolbar. Whenever you want to text yourself something, just highlight it in the browser and click the bookmarklet.</p>
 <h2 id="textme-">TextMe!</h2>
 <p><em>NOTE: Since I am no longer employed at Twilio, my Twilio account is no longer funded and therefore this bookmarklet no longer is operating. However, you can build your own and use your own Twilio account!</em></p>
-<p>A few weeks ago, I built this derpy little bookmarklet that lets you send highlighted text in your browser to your phone as an SMS. My friend Jen actually inspired this app and I realized how useful it would be when I&#x2019;m on my way out and don&#x2019;t want to retype the address of the restaurant into my phone. I also felt that this would be a good project to improve my javascript (I&#x2019;ve never written a bookmarklet), as well as learn to work around Cross-Origin Resource Sharing.</p>
+<p>A few weeks ago, I built this derpy little bookmarklet that lets you send highlighted text in your browser to your phone as an SMS. My friend Jen actually inspired this app and I realized how useful it would be when I’m on my way out and don’t want to retype the address of the restaurant into my phone. I also felt that this would be a good project to improve my javascript (I’ve never written a bookmarklet), as well as learn to work around Cross-Origin Resource Sharing.</p>
 <p>The technology stack for this project is HTML/css/javascript/jQuery, Rails, Ruby, Heroku.</p>
-<h2 id="things-i-ve-learned">Things I&#x2019;ve Learned</h2>
+<h2 id="things-i-ve-learned">Things I’ve Learned</h2>
 <h3 id="bookmarklet-javascript">Bookmarklet Javascript</h3>
-<p>The bookmarklet, essentially, is a function that is executed whenever you click on it. In this case, the function did the following things: attach a script to the HTML document body, execute that appended script, import two functions (&#x201C;getSelText&#x201D; that will capture the highlighted text and &#x201C;sendSMS&#x201D; that will send a POST request to my server, thus sending a request to Twilio to deliver the SMS), and then calling &#x201C;sendSMS&#x201D; that will initiate the SMS delivery.</p>
-<p>Here is the code for the TextMe! landing page. This essentially shows how I took the user&#x2019;s phone number, generated a script (with the particular phone number) that will make the sendSMS call to the server, and put that into an anchor tag that the user can drag to the toolbar. Line 17 is the javascript function that ends up in the bookmarklet that is dragged to the toolbar:</p>
+<p>The bookmarklet, essentially, is a function that is executed whenever you click on it. In this case, the function did the following things: attach a script to the HTML document body, execute that appended script, import two functions (“getSelText” that will capture the highlighted text and “sendSMS” that will send a POST request to my server, thus sending a request to Twilio to deliver the SMS), and then calling “sendSMS” that will initiate the SMS delivery.</p>
+<p>Here is the code for the TextMe! landing page. This essentially shows how I took the user’s phone number, generated a script (with the particular phone number) that will make the sendSMS call to the server, and put that into an anchor tag that the user can drag to the toolbar. Line 17 is the javascript function that ends up in the bookmarklet that is dragged to the toolbar:</p>
 <pre><code>&lt;section class=&quot;form&quot;&gt;
     &lt;input type=&quot;text&quot; placeholder=&quot;xxx-xxx-xxxx&quot;&gt;
     &lt;button type=&quot;submit&quot;&gt;Make my bookmarklet!&lt;/button&gt;
@@ -68,23 +65,23 @@ a:hover > img { display: block; position: absolute; z-index: 99 }
 
 &lt;script type=&quot;text/javascript&quot;&gt;
     $(document).ready( function() {
-        $(&apos;.form &gt; .btn&apos;).click( function() {
-            var recipient = $(&apos;.form .input-medium&apos;).val();
+        $(&#39;.form &gt; .btn&#39;).click( function() {
+            var recipient = $(&#39;.form .input-medium&#39;).val();
             if ( recipient != &quot;&quot; ) {
-                var href = &quot;javascript:(function(){var s=document.createElement(&apos;script&apos;);s.src=&apos;http://www.andy-jiang.com/text2.js&apos;;s.onload=function(){sendSMS(&quot; + recipient + &quot;)};document.body.appendChild(s);})();&quot;;
+                var href = &quot;javascript:(function(){var s=document.createElement(&#39;script&#39;);s.src=&#39;http://www.andy-jiang.com/text2.js&#39;;s.onload=function(){sendSMS(&quot; + recipient + &quot;)};document.body.appendChild(s);})();&quot;;
                 // Make the draggable bookmarklet.
-                var a = document.createElement(&apos;a&apos;);
+                var a = document.createElement(&#39;a&#39;);
                 a.title = &quot;TextMe!&quot;;
                 a.innerHTML = &quot;TextMe!&quot;;
                 a.href = href;
-                $(&apos;#bookmarklet&apos;).html(a);
+                $(&#39;#bookmarklet&#39;).html(a);
             }
         });
     });
 &lt;/script&gt;
-</code></pre><p>When you click on the bookmarklet after it is dragged on your toolbar, the function appends some javascript to the HTML document and imports the below two functions. Then, once everything is imported successfully, sendSMS is called with the phone number passed as an argument. The function sendSMS will get the selected text and send a request to the server (passing the recipient&#x2019;s phone number and the body of the SMS, which is the highlighted text) to then ultimately send the SMS.</p>
+</code></pre><p>When you click on the bookmarklet after it is dragged on your toolbar, the function appends some javascript to the HTML document and imports the below two functions. Then, once everything is imported successfully, sendSMS is called with the phone number passed as an argument. The function sendSMS will get the selected text and send a request to the server (passing the recipient’s phone number and the body of the SMS, which is the highlighted text) to then ultimately send the SMS.</p>
 <pre><code>function getSelText() {
-  var txt = &apos;&apos;;
+  var txt = &#39;&#39;;
   if (window.getSelection) {
     txt = window.getSelection();
   } else if (document.getSelection) {
@@ -98,7 +95,7 @@ a:hover > img { display: block; position: absolute; z-index: 99 }
 function sendSMS( recipient ) {
   var body = getSelText();
 
-  if ( body == &apos;&apos; ) {
+  if ( body == &#39;&#39; ) {
     alert(&quot;You have not highlighted anything to send to your phone!&quot;);
   } else {
     // Create object.
@@ -116,20 +113,20 @@ function sendSMS( recipient ) {
 </code></pre><h3 id="javascript-without-jquery">Javascript without jQuery</h3>
 <p>Because this is a bookmarklet, the intention was to keep it as lightweight with minimal dependencies. As such, it made sense (and was a great challenge) to write all of the bookmarklet javascript without jQuery to help append scripts and traverse the document object model. Note the substantial amount of jQuery used in the first code sample.</p>
 <h3 id="cross-origin-resource-sharing-cors-">Cross-Origin Resource Sharing (CORS)</h3>
-<p>In computing, an important security concept for browser-side programming was what is known as &#x2018;same origin&#x2019; policy. This policy allows scripts running on the same &#x2018;origin&#x2019; (domain, hostname, web server) to access each other&#x2019;s methods, properties, and attributes with no specific restrictions. However, this policy prevents scripts on one domain to access the methods, properties, and attributes of another domain (imagine if you could write some javascript on my hostname that can call methods on another web server&#x2014;there are obvious security implications and risks involved).</p>
+<p>In computing, an important security concept for browser-side programming was what is known as ‘same origin’ policy. This policy allows scripts running on the same ‘origin’ (domain, hostname, web server) to access each other’s methods, properties, and attributes with no specific restrictions. However, this policy prevents scripts on one domain to access the methods, properties, and attributes of another domain (imagine if you could write some javascript on my hostname that can call methods on another web server—there are obvious security implications and risks involved).</p>
 <p>In some instances, it is necessary to pass data from the client side of one hostname to the server of another domain, as is in the case of this bookmarklet. TextMe! attaches and runs a script on any website on the Internet, which takes the highlighted text and POSTs that data to my humble little WEBricks Heroku-hosted web server. In these cases, CORS is one modern way of allowing for these interactions to happen.</p>
-<p>CORS defines a specific way to allow for cross-domain requests to occur. The browser making the cross-domain request to the server has to pass an &#x2018;Origin HTTP header&#x2019;, indicating its domain. Then, the web server responds with an &#x2018;Access-Control-Allow-Origin&#x2019; header with a value denoting which origin sites are allowed.</p>
-<p>Please see the example from my server side Ruby code below. Line 33 an onward shows the header response with &#x2018;Access-Control-Allow-Origin: *&#x2019;, meaning to allow every cross-domain request.</p>
-<pre><code>require &apos;rubygems&apos;
-require &apos;twilio-ruby&apos;
-require &apos;net/http&apos;
-require &apos;uri&apos;
-require &apos;json&apos;
+<p>CORS defines a specific way to allow for cross-domain requests to occur. The browser making the cross-domain request to the server has to pass an ‘Origin HTTP header’, indicating its domain. Then, the web server responds with an ‘Access-Control-Allow-Origin’ header with a value denoting which origin sites are allowed.</p>
+<p>Please see the example from my server side Ruby code below. Line 33 an onward shows the header response with ‘Access-Control-Allow-Origin: *’, meaning to allow every cross-domain request.</p>
+<pre><code>require &#39;rubygems&#39;
+require &#39;twilio-ruby&#39;
+require &#39;net/http&#39;
+require &#39;uri&#39;
+require &#39;json&#39;
 
 class TwilioController &lt; ApplicationController
-  TWILIO_ACCOUNT_SID = &apos;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&apos;
-  TWILIO_ACCOUNT_TOKEN = &apos;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&apos;
-  SENDER_NUMBER = &apos;+xxxxxxxxxx&apos;
+  TWILIO_ACCOUNT_SID = &#39;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#39;
+  TWILIO_ACCOUNT_TOKEN = &#39;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#39;
+  SENDER_NUMBER = &#39;+xxxxxxxxxx&#39;
 
   def send_sms
     set_access_control_headers
@@ -148,18 +145,18 @@ class TwilioController &lt; ApplicationController
       :to   =&gt; &quot;#{number}&quot;,
       :body =&gt; &quot;#{body}&quot;
     )
-    render :file =&gt; &apos;app/views/twiliocon/index.html&apos;
+    render :file =&gt; &#39;app/views/twiliocon/index.html&#39;
   end
 
   private
   def set_access_control_headers
-    headers[&apos;Access-Control-Allow-Origin&apos;] = &apos;*&apos;
-    headers[&apos;Access-Control-Allow-Method&apos;] = &apos;POST, GET, OPTIONS&apos;
-    headers[&apos;Access-Control-Max-Age&apos;] = &apos;1278000&apos;
+    headers[&#39;Access-Control-Allow-Origin&#39;] = &#39;*&#39;
+    headers[&#39;Access-Control-Allow-Method&#39;] = &#39;POST, GET, OPTIONS&#39;
+    headers[&#39;Access-Control-Max-Age&#39;] = &#39;1278000&#39;
     render :json =&gt; { :success =&gt; true }
     end
 end
-</code></pre><p>Note that I didn&#x2019;t include any phone number validation, which should probably be included to some extent.</p>
+</code></pre><p>Note that I didn’t include any phone number validation, which should probably be included to some extent.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>For a quick project, TextMe! certainly challenged me in new areas and helped me learn as a developer. Understanding how bookmarklets worked, writing jQuery-free javascript, and getting a better grasp of Cross-Origin Resource Sharing proved to be achievable, yet challenging goals.</p>
 <p>Features to add in next version:</p>
