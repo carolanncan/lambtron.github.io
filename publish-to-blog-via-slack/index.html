@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Publish to Blog via Slack</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:creator" content="andyjiang">
+    <meta name="twitter:card" content="">
+    <link rel="alternate" type="application/atom+xml" href="atom.xml">
+    <link rel="stylesheet" href="/index.css">
+    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+      analytics.load('425safDNzgGhWwGte2oSmvBDQLrTSycN');
+      }}();
+    </script>
+  </head>
+  <body>
+    <div class="Layout">
+      <div class="Layout-nav">
+        <div class="Profile">
+          <a class="Profile-avatar" href="/"></a>
+          <h1 class="Profile-name Heading Heading--medium"><a href="/">Andy Jiang</a></h4>
+          <p class="Profile-role">Derp Engineer at <a class="Link" href="https://segment.com">Segment</a></p>
+        
+          <ul class="Profile-links">
+            <a class="Profile-link Profile-twitter-link" href="https://twitter.com/andyjiang">Twitter</a>
+            <a class="Profile-link Profile-github-link" href="https://github.com/lambtron">GitHub</a>
+            
+            <a class="Profile-link Profile-linkedin-link" href="https://linkedin.com/in/andyjiang">Dribbble</a>
+            
+            
+            
+            
+            <a class="Profile-link Profile-rss-link" href="/atom.xml">RSS<a>
+          </ul>
+        
+          <a class="Profile-twitter-button twitter-follow-button" href="https://twitter.com/andyjiang" data-show-count="false">Follow @andyjiang</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>      </div>
+      <div class="Layout-main"><article class="Article">
+  <a class="Article-home" href="/">Home</a>
+  <h1 class="Article-title Heading Heading--huge">Publish to Blog via Slack</h1>
+  <time class="Article-date" datetime="2015-08-09T00:00:00.000Z">Saturday, 8 August 2015</time>
+  <div class="Article-content Prose Prose--medium">
+    <p>Because I want the future of accomplishing <em>anything</em> with <img width=22px src='http://i.imgur.com/J9yDWph.png' style='display: inline; margin: 0' /> to be here now. Here is how you can setup a blog (hosted by <a href="https://www.dropbox.com/">Dropbox</a>) and update it by sending a message in <a href="https://www.slack.com">Slack</a>.</p>
+<h2 id="pancake-io">Pancake.io</h2>
+<p><a href="https://pancake.io">Pancake.io</a> (definitely one of the cooler domains I’ve seen) allows you to host a blog with static Dropbox files. There are <a href="http://webdesign.tutsplus.com/articles/7-dropbox-powered-site-creation-platforms--cms-21231">some others</a> out there, but this one is free and only takes two minutes to setup.</p>
+<p>Register, create a new project, and authenticate your <a href="https://www.dropbox.com/">Dropbox account</a>. Pancake will then create a new directory in your Dropbox, <code>/App/Pancake.io</code>, with some default files. Note that this is where you would put new files for your blog.</p>
+<p><img src="http://i.imgur.com/hrk3GCk.png" alt=""></p>
+<p>You can check out your beautiful creation immediately, as well. Just point your browser to the customizable subdomain Pancake provides you:</p>
+<p><img src="http://i.imgur.com/1s4fRRL.png" alt=""></p>
+<p>Voila! Now you can’t say that you didn’t do something today. Good on you.</p>
+<h2 id="zapier">Zapier</h2>
+<p>A personal favorite, <a href="https://www.zapier.com">Zapier</a> let’s you tie together all sorts of web services to make <a href="https://www.google.com/webhp?sourceid=chrome-instant&amp;ion=1&amp;espv=2&amp;ie=UTF-8#q=best%20zaps">some pretty nifty things</a>. Let’s setup Zapier so that every new message in a Slack channel will be saved to the <code>/App/Pancake.io</code> directory in Dropbox.</p>
+<p>These steps are pretty self-explanatory:</p>
+<p><img src="http://i.imgur.com/xdbpK7s.png" alt=""></p>
+<p>For the Slack filter, I decided to create a new channel called <code>#blog</code> (totally up to you, you are the captain of your own ship):</p>
+<p><img src="http://i.imgur.com/qiVLYE9.png" alt=""></p>
+<p>Finally, for each new message in Slack that match the previous filter, tell Zapier to create a file in the right directory with the right information. I chose to use <code>timestamp</code> as the filename, but again, up to you.</p>
+<p><img src="http://i.imgur.com/v4pF1ua.png" alt=""></p>
+<p>Then, save and enable!</p>
+<h2 id="blog">Blog</h2>
+<p><a href="http://andy-slack.pancakeapps.com/1439137541.000007.txt">Here</a> is <em>this</em> post published via Slack to my Pancake blog (yes, I did just publish this entire markdown file in <code>#blog</code>)!</p>
+<p>A few words of warning about this egregiously stitched together hack:</p>
+<ul>
+<li>Pancake doesn’t easily provide you with an archive of existing blog posts from your blog’s home page. You would need to explicitly link your blog posts together like a 1999 <a href="https://en.wikipedia.org/wiki/Webring">web ring</a>. On a positive note, this could be an opportunity to be ahead of the curve when these regain popularity.</li>
+<li>You’re unable to edit the blog post-publish via Slack. Sorry everyone, I’m just a dude who likes to surf the inter webs, not some magician.</li>
+<li>Looks like Pancake hasn’t tweeted since 2014. Let’s hope they’re just heads down cooking up something awesome!!</li>
+</ul>
+<p>If you are able to find work arounds to either of the above points, please let me know!</p>
+<p>Hope you found this useless and distracting! And if you’re not having fun, then you’re not doing it right!!</p>
+<p><em>Like what you read? Share this article and follow me on <a href="http://www.twitter.com/andyjiang">Twitter</a> for random musings.</em></p>
+
+  </div>
+</article>
+<script>
+  analytics.page('Article', {
+    article: {
+      name: "Publish to Blog via Slack",
+      date: "2015-08-09T00:00:00.000Z"
+    }
+  });
+</script>
+      </div>
+    </div>
+    <script src="/index.js"></script>
+  </body>
+</html>
