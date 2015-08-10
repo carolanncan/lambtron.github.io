@@ -5,7 +5,7 @@ I've seen this in [some of the articles](http://firstround.com/review/how-dropbo
 
 You can check out a live demo right on this site. Scroll down and check out the horizontal progress bar at the top of the window!
 
-The HTML is a `div` with width at 100% and a `span` inside with variable width. Both the `div` and `span` will be fixed at the top and will have heights of 2px. Here is the HTML:
+The HTML is a `div` with `width` at `100%` and a `span` inside with variable `width`. Both the `div` and `span` will be fixed at the top and will have heights of `2px`. Here is the HTML:
 
 ```html
 <div id="Reading-progress">
