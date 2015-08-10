@@ -3,7 +3,7 @@
   <title>Andy Jiang</title>
   <link href="http://blog.andyjiang.com/atom.xml" rel="self"/>
   <link href="http://blog.andyjiang.com"/>
-  <updated>2015-08-10T01:07:38.688Z</updated>
+  <updated>2015-08-10T01:17:35.643Z</updated>
   <id>http://blog.andyjiang.com</id>
   <author>
     <name>Andy Jiang</name>
@@ -60,7 +60,7 @@
 </summary>
     <content type="html">&lt;p&gt;I’ve seen this in &lt;a href=&quot;http://firstround.com/review/how-dropbox-sources-scales-and-ships-its-best-product-ideas/&quot;&gt;some of the articles&lt;/a&gt; on the Internet—a subtle, horizontal bar at the top of the window that fills up as you scroll down, indicating how far you’ve read. I came across &lt;a href=&quot;http://stackoverflow.com/questions/19700020/change-progress-bar-value-based-on-scrolling&quot;&gt;this solution&lt;/a&gt; that uses jQuery, but wanted to write one using vanilla JavaScript. Here is the code!&lt;/p&gt;
 &lt;p&gt;You can check out a live demo right on this site. Scroll down and check out the horizontal progress bar at the top of the window!&lt;/p&gt;
-&lt;p&gt;The HTML is a &lt;code&gt;div&lt;/code&gt; with width at 100% and a &lt;code&gt;span&lt;/code&gt; inside with variable width. Both the &lt;code&gt;div&lt;/code&gt; and &lt;code&gt;span&lt;/code&gt; will be fixed at the top and will have heights of 2px. Here is the HTML:&lt;/p&gt;
+&lt;p&gt;The HTML is a &lt;code&gt;div&lt;/code&gt; with &lt;code&gt;width&lt;/code&gt; at &lt;code&gt;100%&lt;/code&gt; and a &lt;code&gt;span&lt;/code&gt; inside with variable &lt;code&gt;width&lt;/code&gt;. Both the &lt;code&gt;div&lt;/code&gt; and &lt;code&gt;span&lt;/code&gt; will be fixed at the top and will have heights of &lt;code&gt;2px&lt;/code&gt;. Here is the HTML:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;lang-html&quot;&gt;&amp;lt;div id=&amp;quot;Reading-progress&amp;quot;&amp;gt;
   &amp;lt;span id=&amp;quot;Progress-bar&amp;quot; class=&amp;quot;bar&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;
 &amp;lt;/div&amp;gt;
