@@ -43,27 +43,30 @@
   <h1 class="Article-title Heading Heading--huge">Nightmare-LinkedIn: Crawling LinkedIn and Creating a LinkedIn API</h1>
   <time class="Article-date" datetime="2015-05-25T00:00:00.000Z">Sunday, 24 May 2015</time>
   <div class="Article-content Prose Prose--medium">
-    <p>LinkedIn in true LinkedIn fashion has shut off its API for developers to use. But that’s ok—we all knew this day was coming! Regardless, the inter webs allows us additional alternatives to programmatically grab the data that we need.</p>
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>LinkedIn in true LinkedIn fashion has shut off its API for developers to use. But that&#x2019;s ok&#x2014;we all knew this day was coming! Regardless, the inter webs allows us additional alternatives to programmatically grab the data that we need.</p>
 <p><a href="http://www.nightmarejs.org/">Nightmare</a> is a high-level wrapper for PhantomJS (created right here at <a href="https://www.segment.com/">Segment</a>) to help us automate various web tasks that did not have an API. Nightmare not only makes it much easier to write and maintain code for virtual browsing, but also provides a platform to build <a href="https://github.com/segmentio/nightmare#plugins">plugins</a> to repeat automated sequences in a single call.</p>
-<p><a href="https://github.com/lambtron/nightmare-linkedin">Nightmare-LinkedIn</a> is a LinkedIn plugin that allows you to easily interface with LinkedIn’s website. A few methods that are exposed include <code>.login()</code>, <code>.search()</code>, <code>.filter()</code>, <code>.crawl()</code>, and <code>.connect()</code>. Here is a quick example of how to use this plugin with Nightmare to login to your CEO’s LinkedIn account and then view two pages the profiles of product managers in United States (with the intent that the users whom the bot has crawled will see your CEO viewing his/her profile):</p>
+<p><a href="https://github.com/lambtron/nightmare-linkedin">Nightmare-LinkedIn</a> is a LinkedIn plugin that allows you to easily interface with LinkedIn&#x2019;s website. A few methods that are exposed include <code>.login()</code>, <code>.search()</code>, <code>.filter()</code>, <code>.crawl()</code>, and <code>.connect()</code>. Here is a quick example of how to use this plugin with Nightmare to login to your CEO&#x2019;s LinkedIn account and then view two pages the profiles of product managers in United States (with the intent that the users whom the bot has crawled will see your CEO viewing his/her profile):</p>
 <pre><code class="lang-javascript">
 /**
  * Dependencies.
  */
 
-var Nightmare = require(&#39;nightmare&#39;);
-var LinkedIn = require(&#39;nightmare-linkedin&#39;);
+var Nightmare = require(&apos;nightmare&apos;);
+var LinkedIn = require(&apos;nightmare-linkedin&apos;);
 var nightmare = new Nightmare();
 
 /**
  * Set variables.
  */
 
-var email = &#39;ceo@startup.com&#39;;
-var password = &#39;selltoproductmanagers&#39;;
-var type = &#39;people&#39;;
-var query = &#39;product manager&#39;;
-var filter = [&#39;United States&#39;];
+var email = &apos;ceo@startup.com&apos;;
+var password = &apos;selltoproductmanagers&apos;;
+var type = &apos;people&apos;;
+var query = &apos;product manager&apos;;
+var filter = [&apos;United States&apos;];
 var pages = 2;
 
 /**
@@ -78,7 +81,7 @@ nightmare
   // Search for something and set the types of results.
   .use(LinkedIn.search(type, query))
 
-  // Filter the search results for &#39;United States&#39;.
+  // Filter the search results for &apos;United States&apos;.
   .use(LinkedIn.filter(filter))
 
   // Crawl results for two pages.
@@ -90,8 +93,8 @@ nightmare
 <h2 id="writing-the-linkedin-nightmare-plugin">Writing the LinkedIn Nightmare plugin</h2>
 <p>The entirety of the code logic is <a href="https://github.com/lambtron/nightmare-linkedin/blob/master/index.js">here</a>.</p>
 <h2 id="creating-an-api">Creating an API</h2>
-<p>With Nightmare, you could even create an HTTP API. Set up a server with endpoints that accept requests, which contains information about a query, let’s say an email address, then uses the plugin to search LinkedIn with the email, and ultimately returns to the API user the results.</p>
-<p>Of course if LinkedIn notices suspicious activity from your server’s IP, it is very likely that they will block any requests from it. In which case it is helpful to limit your use, proxy through other IP addresses, or just hire people from mechanical turk or other crowd service providers to retrieve data from/interface with LinkedIn for you.</p>
+<p>With Nightmare, you could even create an HTTP API. Set up a server with endpoints that accept requests, which contains information about a query, let&#x2019;s say an email address, then uses the plugin to search LinkedIn with the email, and ultimately returns to the API user the results.</p>
+<p>Of course if LinkedIn notices suspicious activity from your server&#x2019;s IP, it is very likely that they will block any requests from it. In which case it is helpful to limit your use, proxy through other IP addresses, or just hire people from mechanical turk or other crowd service providers to retrieve data from/interface with LinkedIn for you.</p>
 <p><em>Like what you read? Share this or follow me on <a href="http://www.twitter.com/andyjiang">Twitter</a> for random musings.</em></p>
 
   </div>

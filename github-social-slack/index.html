@@ -43,8 +43,11 @@
   <h1 class="Article-title Heading Heading--huge">GitHub Social Slack: Posting GitHub User Events in Slack</h1>
   <time class="Article-date" datetime="2015-05-15T00:00:00.000Z">Thursday, 14 May 2015</time>
   <div class="Article-content Prose Prose--medium">
-    <p>Slack is awesome. So is GitHub. Also, GitHub’s integration with Slack is neat, but only sends events on a given repo or organization. How cool would it be if we could send updates based on other users (when someone watches a new repo, forks or creates a repo, deploys something, etc.) into Slack?</p>
-<p>The use case that inspired this is my side project of side project hackers, 20% Club. I wanted a passive and ambient way to send all of the coding activity into a Slack channel so we can see what new repos others are watching, forking, and creating. At first I was thinking of building an app and having each user auth with their GitHub account, but then realized the easier way would be just to create a new dummy user who just “follows” everyone’s GitHub accounts. Then the dummy user’s news feed would be exactly what would be posted into Slack.</p>
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>Slack is awesome. So is GitHub. Also, GitHub&#x2019;s integration with Slack is neat, but only sends events on a given repo or organization. How cool would it be if we could send updates based on other users (when someone watches a new repo, forks or creates a repo, deploys something, etc.) into Slack?</p>
+<p>The use case that inspired this is my side project of side project hackers, 20% Club. I wanted a passive and ambient way to send all of the coding activity into a Slack channel so we can see what new repos others are watching, forking, and creating. At first I was thinking of building an app and having each user auth with their GitHub account, but then realized the easier way would be just to create a new dummy user who just &#x201C;follows&#x201D; everyone&#x2019;s GitHub accounts. Then the dummy user&#x2019;s news feed would be exactly what would be posted into Slack.</p>
 <p>Taking this:</p>
 <p><img src="https://camo.githubusercontent.com/ef6090465557faa52e02076e4684268c652ce047/687474703a2f2f692e696d6775722e636f6d2f694b69756765322e706e67" alt=""></p>
 <p>..and posting it into Slack:</p>
