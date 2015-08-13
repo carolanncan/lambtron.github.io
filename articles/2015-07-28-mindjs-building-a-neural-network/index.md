@@ -1,3 +1,6 @@
+---
+draft: true
+---
 
 # Mind: How to Build a Neural Network
 
