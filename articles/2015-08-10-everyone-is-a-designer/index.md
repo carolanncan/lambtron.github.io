@@ -1,7 +1,10 @@
+---
+draft: true
+---
 
 # Everyone is a Designer
 
-Yes, even you. Yes, you. This past week, I had the pleasure of working with one of the designers on our team. Apparently, design is less about your Sketch skills or how particular you are about your Espresso, and more about problem solving. Here is what I learned!
+Yes, even you. Yes, you. This past week, I had the pleasure of working with [one of the designers](https://twitter.com/carolanncan) on our team. Apparently, design is less about your Sketch skills or how particular you are about your Espresso (though also not completely unnecessary), and more about problem solving. Here is what I learned!
 
 If you have ever had to solve a problem, you used techniques that are commonly used by designers. Chances are that you weren't _aware_ of those techniques—divergent thinking, convergent thinking, analysis, synthesis, etc.—but you still arrived at a satisfactory solution and continued on with your life.
 
@@ -19,7 +22,7 @@ I've never worked with designers directly. Though I've always seen the impact of
 
 > What I thought designers did
 
-For some reason, I thought designers were given "design" tasks ("make this button 'pop'") throughout various parts of the product-building process. It was only recently that I realized designers are (and, arguably, should be) involved at the beginning of that process. Even before the team decides to build the product. I'm talking about the stage so early in the product-conceiving process, when the team just knows that there is only a _problem_ that needs to be fixed.
+For some reason, I thought designers were given "design" tasks ("make this button 'pop'" or "please add drop shadow of 2px on this square") throughout various parts of the product-building process. It was only recently that I realized designers are (and, arguably, should be) involved at the beginning of that process. Even before the team decides to build the product. I'm talking about the stage _so_ early in the product-conceiving process, when the team just knows that there is only a _problem_ that needs to be solved.
 
 ## Problem Solving
 
@@ -29,6 +32,8 @@ The goal of making things is to help make our lives easier, to help us solve pro
 > Donald Norman, in [The Design of Everyday Things](https://en.wikipedia.org/wiki/The_Design_of_Everyday_Things)
 
 Usability _is_ design. Thinking about how someone uses the thing requires thinking about its design. Somebody had to empathize with end users and understand the their needs, values, wants, etc., in order to design something useful and easy to use for them.
+
+*I'm using 'thing' here because design can be applied to more than just products: processes, ...*
 
 Since the thing is the _solution_ to the problem, the initial conception of the thing revolves around _understanding_ the problem. And designers are the ones at the tip of the spear for this, because they contribute to the ultimate usasbility of the final thing.
 

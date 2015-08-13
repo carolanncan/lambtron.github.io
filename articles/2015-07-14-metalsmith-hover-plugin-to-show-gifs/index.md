@@ -92,4 +92,10 @@ It's all about the first rule of journalism: [give the people what they want](ht
 
 I hope you enjoyed this! [Tweet at me](https://www.twitter.com/andyjiang) if you have any [questions](http://media.giphy.com/media/MJTOHmGiGPHgI/giphy.gif), [comments](http://media.giphy.com/media/Bt7yp8KpygqYg/giphy.gif), or just [want to chat](http://media.giphy.com/media/oGfEeawH6DrZ6/giphy.gif).
 
+## Resources
+
+[Metalsmith Plugins](http://www.andrewgoodricke.com/posts/2015-07-23_metalsmith_plugins.html)
+
+[Creating a Metalsmith Tag Plugin](http://blog.krawaller.se/posts/creating-a-metalsmith-tag-plugin/)
+
 *Like what you read? Share this article and follow me on [Twitter](http://www.twitter.com/andyjiang) for random musings.*
