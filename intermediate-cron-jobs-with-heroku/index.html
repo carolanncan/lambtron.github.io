@@ -43,25 +43,28 @@
   <h1 class="Article-title Heading Heading--huge">Intermediate Cron Jobs with Heroku</h1>
   <time class="Article-date" datetime="2014-11-04T00:00:00.000Z">Monday, 3 November 2014</time>
   <div class="Article-content Prose Prose--medium">
-    <p>We all know that Heroku has made app deployment as easy as git push heroku master (and, indirectly, educating the vast majority of junior junior devs a tiny sliver of git). Heroku even went ahead and built out an ecosystem of tools to help developers easily add services to their apps.</p>
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>We all know that Heroku has made app deployment as easy as git push heroku master (and, indirectly, educating the vast majority of junior junior devs a tiny sliver of git). Heroku even went ahead and built out an ecosystem of tools to help developers easily add services to their apps.</p>
 <ul>
 <li>Want to add a datastore? You can enable Redis to Mongo to Postgres.</li>
 <li>How about logging? Keen.io, Flydata, Logentries can help out.</li>
 <li>Monitoring? Again, you have Librato, Airbrake, New Relic, and Bugsnag, among others.</li>
 <li>Want to run schedule jobs? Well, there is Heroku Scheduler.</li>
 </ul>
-<p>Yes, but if you’ve ever played with Heroku Scheduler, it unfortunately is very limited in flexibility, especially in the range and variety with which you can schedule jobs: only in 10 minute, 60 minute, or 24 hour intervals.</p>
+<p>Yes, but if you&#x2019;ve ever played with Heroku Scheduler, it unfortunately is very limited in flexibility, especially in the range and variety with which you can schedule jobs: only in 10 minute, 60 minute, or 24 hour intervals.</p>
 <p>Heroku recently came out with clock processes for custom job scheduling. Here is some example code in nodejs to help demonstrate how it works.</p>
 <p>In your Procfile, you define for Heroku the clock and the worker process, as such.</p>
 <h2 id="procfile-">Procfile:</h2>
 <pre><code>web: node server.js
 worker: node bot.js
 clock: node clock.js
-</code></pre><p>The clock.js file defines the singleton process (so as to avoid duplicate jobs queueing and complicated locking logic), whose only function is to schedule a task to the worker process. You can use any library to do so, but here we use npm’s cron. The task that is executed is assigned to onTick.</p>
+</code></pre><p>The clock.js file defines the singleton process (so as to avoid duplicate jobs queueing and complicated locking logic), whose only function is to schedule a task to the worker process. You can use any library to do so, but here we use npm&#x2019;s cron. The task that is executed is assigned to onTick.</p>
 <h2 id="clock-js">clock.js</h2>
 <pre><code class="lang-javascript">// clock.js
-var CronJob = require(&#39;cron&#39;).CronJob;
-var bot = require(&#39;./bot.js&#39;);
+var CronJob = require(&apos;cron&apos;).CronJob;
+var bot = require(&apos;./bot.js&apos;);
 
 new CronJob({
   cronTime: &quot;13 9,11,16,20,22 * * *&quot;, // everyday, 9:13, 11:13, 4:13, 8:13,
@@ -76,7 +79,7 @@ module.exports = {
   start: function() { /* do stuff */ }
 };
 </code></pre>
-<p>Hope this basic example helps people use Heroku’s new custom clock processor to schedule jobs!</p>
+<p>Hope this basic example helps people use Heroku&#x2019;s new custom clock processor to schedule jobs!</p>
 <p><em>Like what you read? Share this article and follow me on <a href="http://www.twitter.com/andyjiang">Twitter</a> for random musings.</em></p>
 
   </div>

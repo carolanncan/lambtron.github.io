@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Introduction to Metalsmith</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:creator" content="andyjiang">
+    <meta name="twitter:card" content="">
+    <link rel="alternate" type="application/atom+xml" href="atom.xml">
+    <link rel="stylesheet" href="/index.css">
+    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+      analytics.load('425safDNzgGhWwGte2oSmvBDQLrTSycN');
+      }}();
+    </script>
+  </head>
+  <body>
+    <div class="Layout">
+      <div class="Layout-nav">
+        <div class="Profile">
+          <a class="Profile-avatar" href="/"></a>
+          <h1 class="Profile-name Heading Heading--medium"><a href="/">Andy Jiang</a></h4>
+          <p class="Profile-role">Derp Engineer at <a class="Link" href="https://segment.com">Segment</a></p>
+        
+          <ul class="Profile-links">
+            <a class="Profile-link Profile-twitter-link" href="https://twitter.com/andyjiang">Twitter</a>
+            <a class="Profile-link Profile-github-link" href="https://github.com/lambtron">GitHub</a>
+            
+            <a class="Profile-link Profile-linkedin-link" href="https://linkedin.com/in/andyjiang">Dribbble</a>
+            
+            
+            
+            
+            <a class="Profile-link Profile-rss-link" href="/atom.xml">RSS<a>
+          </ul>
+        
+          <a class="Profile-twitter-button twitter-follow-button" href="https://twitter.com/andyjiang" data-show-count="false">Follow @andyjiang</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>      </div>
+      <div class="Layout-main"><article class="Article">
+  <a class="Article-home" href="/">Home</a>
+  <h1 class="Article-title Heading Heading--huge">Introduction to Metalsmith</h1>
+  <time class="Article-date" datetime="2015-08-13T00:00:00.000Z">Wednesday, 12 August 2015</time>
+  <div class="Article-content Prose Prose--medium">
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>When I first encountered <a href="https://www.metalsmith.io">Metalsmith</a>, I thought that it was similar to <a href="http://jekyllrb.com/">Jekyll</a>. It wasn&#x2019;t until I had worked on two to three projects using Metalsmith that I fully realized its flexibility and power. This post is an introduction to Metalsmith and its extensibility.</p>
+<h2 id="what-is-metalsmith-">What is Metalsmith?</h2>
+<p>The <a href="https://www.metalsmith.io">Metalsmith website</a> has a good description of what it does:</p>
+<blockquote>
+<p>We keep referring to Metalsmith as a &#x201C;static site generator&#x201D;, but it&#x2019;s a lot more than that. Since everything is a plugin, the core library is actually just an abstraction for manipulating a directory of files.</p>
+</blockquote>
+<p>If <a href="http://rubyonrails.org/">Rails</a> is an opinionated approach to designing and building web applications, <a href="http://jekyllrb.com/">Jekyll</a> is the same for building blogs and <a href="https://middlemanapp.com/">Middleman</a> is the same for building static sites. Conversely, <a href="http://expressjs.com/">Express</a> / <a href="http://koajs.com/">Koa</a> are <em>unopinionated</em> in their approaches, as is Metalsmith to static sites.</p>
+<blockquote>
+<p>The term &#x2018;<a href="http://stackoverflow.com/questions/802050/what-is-opinionated-software">opinionated</a>&#x2018; suggests how many software design decisions have already been decided for you.</p>
+</blockquote>
+<p>Metalsmith, at its core, takes files in a source directory, perform operations on them via plugins, and writes those files into a destination directory. Plugins can do virtually anything: create new files, filter out files, modify files based on some logic, etc (note this means that plugin order <em>does</em> matter; transformations done by one plugin can be seen and used by following plugins, making the process a modular build pipeline). The entire <a href="https://github.com/segmentio/metalsmith.io/blob/master/src/plugins.json">ecosystem of plugins</a> is what makes Metalsmith so flexible.</p>
+<p><em>Note that you have control over telling Metalsmith the location of the source and destination directories.</em></p>
+<h2 id="how-does-metalsmith-and-its-plugins-work-">How does Metalsmith (and its plugins) work?</h2>
+<p>For example, let&#x2019;s see what Metalsmith does if there are no plugins. Here is the directory (<code>./node_modules</code> is hidden):</p>
+<pre><code>.
+&#x251C;&#x2500;&#x2500; src
+|   &#x251C;&#x2500;&#x2500; index.md
+|   &#x2514;&#x2500;&#x2500; nested
+|       &#x2514;&#x2500;&#x2500; index.md
+&#x2514;&#x2500;&#x2500; index.js
+</code></pre><p>Here is <code>index.js</code> that we&#x2019;ll be running (you can also run Metalsmith via CLI, more on that later):</p>
+<pre><code class="lang-javascript">var Metalsmith = require(&apos;metalsmith&apos;);
+
+Metalsmith(__dirname)
+  .build(function(err) {
+    if (err) throw err;
+  });
+</code></pre>
+<p>Here is what the <code>./build</code> directory would look like:</p>
+<pre><code>.
+&#x251C;&#x2500;&#x2500; src
+|   &#x251C;&#x2500;&#x2500; index.md
+|   &#x2514;&#x2500;&#x2500; nested
+|       &#x2514;&#x2500;&#x2500; index.md
+&#x2514;&#x2500;&#x2500; index.js
+</code></pre><p>..nothing has changed (not even the text inside the markdown files). This is expected since no plugins (i.e. transforms) are being performed.</p>
+<p>Let&#x2019;s dig one level deeper and see what Metalsmith is seeing to help us build a better picture of what&#x2019;s going on. We&#x2019;ll add this really simple function (hint: it&#x2019;s a plugin!) that just logs some info:</p>
+<pre><code class="lang-javascript">var Metalsmith = require(&apos;metalsmith&apos;);
+
+Metalsmith(__dirname)
+
+  // Your first plugin! Wewt!
+  .use(function(files, metalsmith, done) {
+    console.log(&apos;Files: &apos;);
+    console.log(files);
+    console.log();
+    console.log(&apos;Metalsmith: &apos;);
+    console.log(metalsmith);
+  })
+
+  .build(function(err) {
+    if (err) throw err;
+  });
+</code></pre>
+<p>Here is the output:</p>
+<pre><code class="lang-json">Files:
+{ &apos;index.md&apos;:
+   { contents: &lt;Buffer 0a 48 65 6c 6c 6f 2c 20 77 6f 72 6c 64 21&gt;,
+     mode: &apos;0644&apos;,
+     stats: { ... } },
+  &apos;nested/index.md&apos;:
+   { contents: &lt;Buffer 0a 49 27 6d 20 69 6e 20 61 20 6e 65 73 74 65 64 20 66 6f 6c 64 65 72 21&gt;,
+     mode: &apos;0644&apos;,
+     stats: { ... } } }
+
+Metalsmith:
+{ plugins: [ [Function] ],
+  ignores: [],
+  _directory: &apos;/Users/andyjiang/Developer/metalsmith-example&apos;,
+  _metadata: {},
+  _source: &apos;src&apos;,
+  _destination: &apos;build&apos;,
+  _concurrency: Infinity,
+  _clean: true,
+  _frontmatter: true }
+</code></pre>
+<blockquote>
+<p>Yes, there is a ton of junk in <code>files</code>! Just note that the property <code>contents</code> in each file is the only important thing, you can ignore everything else.</p>
+</blockquote>
+<p>We see that the argument <code>files</code> in our function is an object map of all the files in the source directory (and that <code>files[PATH].contents</code> is the body of the file). Many plugins will iterate through <code>files</code> and perform operations on them.</p>
+<p>Also, we see that the second argument, <code>metalsmith</code>, contains some metadata: plugins, directory, even an explicit object for metadata, etc. This is important, because plugins can store config or other information in metadata, or access the metadata to help with file operations.</p>
+<p>The last argument, <code>done</code>, is a function that you can call to tell Metalsmith to go to the next plugin in its queue (or <code>.build()</code>, if it&#x2019;s the last one).</p>
+<h3 id="front-matter-makes-it-easy">Front-matter Makes it Easy</h3>
+<p>Front-matter is <a href="">YAML</a> that can precede <em>any</em> file (sandwiched by two <code>---</code>). Metalsmith will automatically convert this to a key-value in the <code>file</code>&#x2018;s object. For example, the below in <code>./src/index.md</code>:</p>
+<pre><code class="lang-yaml">---
+title: &quot;Teach me how to dougie&quot;
+draft: false
+foo: bar
+---
+
+Hello, world!
+</code></pre>
+<p>Will become this (we&#x2019;re just <code>console.log()</code>ing the <code>file</code>):</p>
+<pre><code class="lang-json">{ &apos;index.md&apos;:
+   { title: &apos;Teach me how to dougie&apos;,
+     draft: false,
+     foo: &apos;bar&apos;,
+     contents: &lt;Buffer 0a 0a 48 65 6c 6c 6f 2c 20 77 6f 72 6c 64 21&gt;,
+     mode: &apos;0644&apos;,
+     stats:
+      { ... } }
+</code></pre>
+<p>We now have <code>title</code>, <code>draft</code>, and <code>foo</code> available for our plugins to use. Many plugins rely on the front-matter to easily transform files, such as filtering out files with <code>draft: true</code> or organizing files into different collections (e.g. <code>collection: articles</code>).</p>
+<p>Here are some example plugins that you can check out to see how they&#x2019;re manipulating the <code>files</code> and <code>metalsmith</code> arguments.</p>
+<ul>
+<li><a href="https://github.com/segmentio/metalsmith-drafts/blob/master/lib/index.js">metalsmith-drafts</a></li>
+<li><a href="https://github.com/segmentio/metalsmith-metadata/blob/master/lib/index.js">metalsmith-metadata</a></li>
+<li><a href="https://github.com/segmentio/metalsmith-permalinks/blob/master/lib/index.js">metalsmith-permalinks</a></li>
+<li><a href="https://github.com/segmentio/metalsmith-excerpts/blob/master/lib/index.js">metalsmith-excerpts</a></li>
+</ul>
+<h2 id="how-do-i-use-metalsmith-">How do I use Metalsmith?</h2>
+<p>Because Metalsmith relies on its plugins to be useful, the options for plugins to use can be overwhelming.</p>
+<blockquote>
+<p><a href="http://i.imgur.com/mP5YIkM.jpg">With great power, comes great responsibility.<img src="http://i.imgur.com/mP5YIkM.jpg"></a></p>
+<p><em>Uncle Ben</em></p>
+</blockquote>
+<p>If you are building a blog generator, then here are some plugins (in order) that may help you get started (in fact, these are what we use to build the <a href="https://segment.com/blog/">Segment blog</a>):</p>
+<ul>
+<li><a href="https://github.com/segmentio/metalsmith-build-date">build date</a>: add a global <code>date</code> property to the Metalsmith metadata that can be used later (like in the atom feed)</li>
+<li><a href="https://github.com/segmentio/metalsmith-drafts">drafts</a>: delete any file that has <code>draft: true</code> in the front-matter</li>
+<li><a href="https://github.com/segmentio/metalsmith-excerpt">excerpt</a>: extract the first paragraph of each file into <code>file.excerpt</code></li>
+<li><a href="https://github.com/segmentio/metalsmith-collections">collections</a>: group files by category (this is a neat plugin that will find all files in the same category and connect them; it&#x2019;ll add the second file as a property <code>next</code> of the first file, etc.)</li>
+<li><a href="https://github.com/segmentio/metalsmith-markdown">markdown</a>: turn markdown into HTML by replacing the <code>file.contents</code> with HTML (using <a href="https://github.com/chjj/marked">marked</a>)</li>
+<li>a custom plugin that saves the <code>contents</code> to <code>body</code> so it can be used in the atom feed (later, <code>contents</code> is going to be merged with the layouts plugin)</li>
+<li>a custom plugin that attaches author metadata to each file (uses an internal web service that returns team members at Segment)</li>
+<li>a custom plugin that attaches category metadata to each post</li>
+<li>a custom plugin that attaches related posts to each post; it adds a <code>related</code> property whose value is an array of other posts to each post </li>
+<li><a href="https://github.com/segmentio/metalsmith-permalinks">permalinks</a>: add <code>path</code> object to each <code>file</code> that will serve as the URL</li>
+<li><a href="https://github.com/segmentio/metalsmith-only-build">only-build</a>: delete any reference from the <code>files</code> hash that is not specified to be built (for performance)</li>
+<li><a href="https://github.com/segmentio/metalsmith-templates">templates</a>: pass each file in the <code>files</code> hash through the template denoted <code>file.template</code>, so that the written output in the destination file is the final HTML (templates is deprecated and split into two smaller plugins&#x2014;<a href="https://github.com/superwolff/metalsmith-layouts">metalsmith-layouts</a> and <a href="https://github.com/superwolff/metalsmith-in-place">metalsmith-in-place</a>)</li>
+</ul>
+<p>Still with me? Thats a lot to take in. And on top of that, some of the above plugins require specific things to include in front-matter or in variables set in the environment to work properly.</p>
+<p>Aside from blog generators (of which you could make tons of different ones with different plugins), here are some other ideas for which you can use Metalsmith:</p>
+<ul>
+<li>project scaffolder</li>
+<li>a build tool (convert, concatenate, and minifi CSS files)</li>
+<li>an ebook generator</li>
+<li>technical docs builder</li>
+</ul>
+<p><a href="https://github.com/segmentio/metalsmith/tree/master/examples">More examples</a>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>I hope this helps clarify a few things and gives you enough information to get deeper in Metalsmith! Here are some further resources to help you out:</p>
+<p><a href="http://keetology.com/blog/rebuilding-keetology">Rebuilding Keetology</a></p>
+<p><a href="http://blog.lecomte.me/posts/2014/way-of-metalsmith/">Way of Metalsmith</a></p>
+<p><a href="http://www.thenewdynamic.org/">Static is The New Dynamic</a></p>
+<p><a href="http://www.okaythree.com/2015/03/building-a-blog-with-metalsmith/">Building a Blog with Metalsmith</a></p>
+<p><a href="https://azurelogic.com/posts/building-a-blog-with-metalsmith/">Building a Blog with Metalsmith</a></p>
+<p>Have fun!</p>
+<p><em>Like what you read? Share this article and follow me on <a href="http://www.twitter.com/andyjiang">Twitter</a> for random musings.</em></p>
+
+  </div>
+</article>
+<script>
+  analytics.page('Article', {
+    article: {
+      name: "Introduction to Metalsmith",
+      date: "2015-08-13T00:00:00.000Z"
+    }
+  });
+</script>
+      </div>
+    </div>
+    <script src="/index.js"></script>
+  </body>
+</html>

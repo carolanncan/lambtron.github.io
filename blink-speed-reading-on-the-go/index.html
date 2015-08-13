@@ -43,14 +43,17 @@
   <h1 class="Article-title Heading Heading--huge">Blink: Speed Reading on the Go</h1>
   <time class="Article-date" datetime="2015-02-20T00:00:00.000Z">Thursday, 19 February 2015</time>
   <div class="Article-content Prose Prose--medium">
-    <p>We’ve all heard about <a href="https://www.squirt.io/">Squirt</a>—a tool that allows you to speed read with a technique that minimizes eye scanning, thereby effectively helping you reach WPMs of 1000 (allegedly). <a href="http://blinkread.herokuapp.com">Blink</a> is the mobile version of Squirt.</p>
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>We&#x2019;ve all heard about <a href="https://www.squirt.io/">Squirt</a>&#x2014;a tool that allows you to speed read with a technique that minimizes eye scanning, thereby effectively helping you reach WPMs of 1000 (allegedly). <a href="http://blinkread.herokuapp.com">Blink</a> is the mobile version of Squirt.</p>
 <h2 id="how-to-use">How to use</h2>
-<p>On your mobile device, first copy any URL so that it is on your clipboard. Then open up <a href="http://blinkread.herokuapp.com">Blink</a> on your device (if you’re on iOS, I recommend saving it to home screen!). Lastly, paste the URL in the app and wait. You will soon see this:</p>
+<p>On your mobile device, first copy any URL so that it is on your clipboard. Then open up <a href="http://blinkread.herokuapp.com">Blink</a> on your device (if you&#x2019;re on iOS, I recommend saving it to home screen!). Lastly, paste the URL in the app and wait. You will soon see this:</p>
 <p><img src="http://i.imgur.com/JRZJKDv.gif" alt=""></p>
 <h2 id="how-does-it-work">How does it work</h2>
 <p>I created a <a href="https://github.com/lambtron/fetchtext-api">separate API service</a> that would take any URL and return just the text. This API service uses <a href="https://github.com/request/request">request</a> to get the HTML of the URL and then <a href="https://github.com/ageitgey/node-unfluff">Unfluff</a> to extract the main text from the HTML.</p>
 <p><a href="http://fetchtext-api.herokuapp.com/fetch/?url=http://www.polygon.com/2014/6/26/5842180/shovel-knight-review-pc-3ds-wii-u">Demo</a>.</p>
-<p>Then, on the client side of this app, it tokenizes the text body into an array of words, find the ‘pivot’ letter in each word, then display it as such one by one. Also if we see a period or other punctuation, we will insert additional punctuation in the array to give it the illusion that we are pausing.</p>
+<p>Then, on the client side of this app, it tokenizes the text body into an array of words, find the &#x2018;pivot&#x2019; letter in each word, then display it as such one by one. Also if we see a period or other punctuation, we will insert additional punctuation in the array to give it the illusion that we are pausing.</p>
 <p>The pivot function:</p>
 <pre><code class="lang-javascript">this._getPivot = function(word) {
   var i = 5;
@@ -85,9 +88,9 @@
 <p>Actually showing the word on the screen. The parameter <code>i</code> represents the index in the array <code>this.words</code>.</p>
 <pre><code class="lang-javascript">this._show = function(i) {
   var p = this._getPivot(this.words[i]);
-  var html = &#39;&lt;span class=&quot;left&quot;&gt;&lt;span class=&quot;pre-pivot&quot;&gt;&#39; + this.words[i].substr(0, p - 1) + &#39;&lt;/span&gt;&lt;/span&gt;&#39;;
-  html += &#39;&lt;span class=&quot;right&quot;&gt;&lt;span class=&quot;pivot&quot;&gt;&#39; + this.words[i].substr(p - 1, 1) + &#39;&lt;/span&gt;&#39;;
-  html += &#39;&lt;span class=&quot;post-pivot&quot;&gt;&#39; + this.words[i].substr(p, this.words[i].length - p) + &#39;&lt;/span&gt;&lt;/span&gt;&#39;;
+  var html = &apos;&lt;span class=&quot;left&quot;&gt;&lt;span class=&quot;pre-pivot&quot;&gt;&apos; + this.words[i].substr(0, p - 1) + &apos;&lt;/span&gt;&lt;/span&gt;&apos;;
+  html += &apos;&lt;span class=&quot;right&quot;&gt;&lt;span class=&quot;pivot&quot;&gt;&apos; + this.words[i].substr(p - 1, 1) + &apos;&lt;/span&gt;&apos;;
+  html += &apos;&lt;span class=&quot;post-pivot&quot;&gt;&apos; + this.words[i].substr(p, this.words[i].length - p) + &apos;&lt;/span&gt;&lt;/span&gt;&apos;;
   (this.el).innerHTML = html;
 };
 </code></pre>

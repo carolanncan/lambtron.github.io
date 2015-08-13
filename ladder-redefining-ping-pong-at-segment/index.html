@@ -43,14 +43,17 @@
   <h1 class="Article-title Heading Heading--huge">Ladder: Redefining Ping Pong at Segment</h1>
   <time class="Article-date" datetime="2015-06-05T00:00:00.000Z">Thursday, 4 June 2015</time>
   <div class="Article-content Prose Prose--medium">
-    <p>We take things very seriously here at Segment. But nothing is taken more seriously than our ping pong, which explains why we play on a non-Olympic regulation sized table (that sits snuggly above our junior-sized pool table), in addition to our sole use of <a href="http://sports.stackexchange.com/questions/69/why-are-there-different-stars-on-table-tennis-balls">one star balls</a>. In fact, the Ping Pong culture at Segment is <em>so</em> strong, we even have a dedicated Slack channel for it.</p>
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>We take things very seriously here at Segment. But nothing is taken more seriously than our ping pong, which explains why we play on a non-Olympic regulation sized table (that sits snuggly above our junior-sized pool table), in addition to our sole use of <a href="http://sports.stackexchange.com/questions/69/why-are-there-different-stars-on-table-tennis-balls">one star balls</a>. In fact, the Ping Pong culture at Segment is <em>so</em> strong, we even have a dedicated Slack channel for it.</p>
 <p><img src="http://i.imgur.com/fpXkYJ2.png" alt=""></p>
-<p>But what fun is it to play Ping Pong with your co-worker without keeping track of everyone’s skill level, especially in a low-friction, asynchronous way? Being the resident Derp Engineer, I knew it was mostly on me to solve this in a manner most obtrusive and obnoxious—by writing an app.</p>
+<p>But what fun is it to play Ping Pong with your co-worker without keeping track of everyone&#x2019;s skill level, especially in a low-friction, asynchronous way? Being the resident Derp Engineer, I knew it was mostly on me to solve this in a manner most obtrusive and obnoxious&#x2014;by writing an app.</p>
 <h2 id="elo-rating-system">Elo rating system</h2>
 <p>The <a href="http://en.wikipedia.org/wiki/Elo_rating_system">Elo rating system</a> is a method for calculating the relative skill levels of players in head-to-head games such as chess. Currently, it has been adapted for use in many multiplayer video games and team sports, including football, basketball, baseball, competitive programming.</p>
 <p>The basic principle is that the difference between two players ratings will serve as a predictor of the outcome of the match (two players with the same rating will be seen by the Elo system as having equal chances of winning). The winner of the match will take a proportional number of points with regards to the predicted outcome from the loser, i.e. if the player with the higher Elo rating going into the match wins, then she will take fewer points from the loser; if the player with the lower Elo rating wins, then that player will take more points.</p>
 <p>I did a quick search on <a href="https://www.npmjs.com/">NPM</a> (using the awesome <a href="https://github.com/willfarrell/alfred-workflows"><code>npm</code></a> <a href="http://support.alfredapp.com/workflows">Alfred workflow</a> command) and came across this module, <a href="https://www.npmjs.com/package/elo-rank/">elo-rank</a>, that takes two players starting ratings, the outcome of the match, and returns the new ratings (example below).</p>
-<pre><code class="lang-javascript">var elo = require(&#39;elo-rank&#39;);
+<pre><code class="lang-javascript">var elo = require(&apos;elo-rank&apos;);
 
 var playerA = 1200;
 var playerB = 1400;
@@ -65,7 +68,7 @@ playerB = elo.updateRating(expectedScoreB, 0, playerB);
 </code></pre>
 <p>With this library, I decided to put together a very simple app to maintain the ratings of our Ping Pong players at Segment.</p>
 <h2 id="ladder-nodejs-mongodb-koa-deku">Ladder: NodeJS, MongoDB, Koa, Deku</h2>
-<p>There is no better time than working on side projects to experiment with new technologies, so I decided to experiment with <a href="https://www.segment.com">Segment</a>‘s <a href="https://www.github.com/dekujs/deku">Deku</a>, a functional alternative to <a href="https://facebook.github.io/react/">ReactJS</a>.</p>
+<p>There is no better time than working on side projects to experiment with new technologies, so I decided to experiment with <a href="https://www.segment.com">Segment</a>&#x2018;s <a href="https://www.github.com/dekujs/deku">Deku</a>, a functional alternative to <a href="https://facebook.github.io/react/">ReactJS</a>.</p>
 <p>The front-end is just built with these <a href="https://github.com/lambtron/ladder/tree/master/client/js">components</a>. <strong>A word of caution!</strong> <em>This was built using <code>Deku v0.0.28</code>, an early beta version; most recommended patterns are probably much different now. To see examples of Deku in action, go <a href="https://github.com/stevenmiller888/awesome-deku">here</a>. To read about the thought process behind creating Deku, go <a href="https://segment.com/blog/deku-our-functional-alternative-to-react/">here</a>.</em></p>
 <p>For the server, I decided to use <a href="https://github.com/koajs/koa">Koa</a> to set up a <a href="https://github.com/lambtron/ladder/blob/master/server/lib/routes.js">few routes</a> to add and remove players, as well as submit game outcomes.</p>
 <p>And here is the finished product:</p>
@@ -81,7 +84,7 @@ slack-ranking: node_modules
 </code></pre>
 <p>The <code>server/slack/ranking</code> file will grab the top five in the Mongo database, format it, and then <code>POST</code> it to the #pingpong Slack endpoint.</p>
 <p>For the real-time updates, I also added logic to grab and format the relevant information and then to <code>POST</code> to the endpoint whenever a new game outcome is submitted through the app.</p>
-<p><em>Note that PongBot is currently closed source, because I am lazy and have our Slack token in the repository. Maybe I’ll open source it for other teams if there is interest!</em></p>
+<p><em>Note that PongBot is currently closed source, because I am lazy and have our Slack token in the repository. Maybe I&#x2019;ll open source it for other teams if there is interest!</em></p>
 <p>You can deploy your own very easily by following the instructions/using the <code>Deploy on Heroku</code> button on the GitHub page (link below).</p>
 <p><a href="https://www.github.com/lambtron/ladder">Source</a>. <a href="https://github.com/lambtron/ladder/issues">Submit an issue</a>.</p>
 <h2 id="other-ping-pong-hacks-apps-projects">Other Ping Pong hacks, apps, projects</h2>
@@ -90,7 +93,7 @@ slack-ranking: node_modules
 <p>We really respect the team over at Campaign Monitor, not only for just being rad people, but also for taking their ping pong culture <em>so</em> seriously that they actually spun out their in-house ping pong pet project into its own commercial product, <a href="http://www.pingpongninja.com/about/">Ping Pong Ninja</a>.</p>
 <p>Read about their ascension into Ping Pong nirvana <a href="https://www.campaignmonitor.com/blog/post/3179/we-take-ping-pong-seriously-around-these-parts/">here</a>.</p>
 <h3 id="-si-digital-http-sidigital-co-"><a href="http://sidigital.co/">Si Digital</a></h3>
-<p>Sure, tech-minded folks have been chastised for spending resources on solving problems for the 0.01% (you read correctly, the one percent of the one percent), such as <a href="http://www.herecomestheairplane.co/">world famine</a> and <a href="http://welldeserved.me/">priviledge distribution</a>. I suspect its only because the public has overlooked the tremendous contributions of Si Digital to the Ping Pong world, using RFID tags in the players’ bats to track them, tapping buttons under the table to indicate a point, and having giant display screens in the room to keep score.</p>
+<p>Sure, tech-minded folks have been chastised for spending resources on solving problems for the 0.01% (you read correctly, the one percent of the one percent), such as <a href="http://www.herecomestheairplane.co/">world famine</a> and <a href="http://welldeserved.me/">priviledge distribution</a>. I suspect its only because the public has overlooked the tremendous contributions of Si Digital to the Ping Pong world, using RFID tags in the players&#x2019; bats to track them, tapping buttons under the table to indicate a point, and having giant display screens in the room to keep score.</p>
 <p>Read about their unparalleled contributions to the Ping Pong world <a href="http://sidigital.co/blog/lab-notes-hacking-our-ping-pong-table">here</a>.</p>
 <h2 id="next-steps">Next Steps</h2>
 <p>We plan to hold 5-on-5 Ping Pong tournaments between companies! We just played <a href="https://siftscience.com">Sift Science</a> a month ago (we lost 3-2, unfortunately) and it was a ton of fun!</p>
@@ -98,7 +101,7 @@ slack-ranking: node_modules
 <blockquote>
 <p>MountainGoat, representing Segment as #1 seed, putting up a monster of a fight. <em>Photo credit: <a href="https://instagram.com/p/2FTRgjNkUE/">Prateek</a></em></p>
 </blockquote>
-<p>Want to challenge the Segment team to a match? Contact me <a href="mailto:andy@segment.com?Subject=Ping%20Pong%20Match">here</a> and we’ll get it setup!</p>
+<p>Want to challenge the Segment team to a match? Contact me <a href="mailto:andy@segment.com?Subject=Ping%20Pong%20Match">here</a> and we&#x2019;ll get it setup!</p>
 <p><em>Like what you read? Share this article and follow me on <a href="http://www.twitter.com/andyjiang">Twitter</a> for random musings.</em></p>
 
   </div>

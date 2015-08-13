@@ -43,12 +43,15 @@
   <h1 class="Article-title Heading Heading--huge">SutterBus: Your Personalized Muni Bus Tracker</h1>
   <time class="Article-date" datetime="2014-02-20T00:00:00.000Z">Wednesday, 19 February 2014</time>
   <div class="Article-content Prose Prose--medium">
-    <p>If you take the muni on a daily basis, it can be a hassle checking bus prediction web sites/apps for your various routes and stops to get an estimation of when your next bus will arrive. This <a href="http://sutterbus.herokuapp.com">app</a> requires one time setup, where you select the bus routes and the stops that you frequently take. It will then generate a unique URL (that you can book mark or save onto your phone) that will display real time prediction data for your selected routes and stops.</p>
+    <style>
+a > img { display: none; }
+a:hover > img { display: block; position: absolute; z-index: 99 }
+</style><p>If you take the muni on a daily basis, it can be a hassle checking bus prediction web sites/apps for your various routes and stops to get an estimation of when your next bus will arrive. This <a href="http://sutterbus.herokuapp.com">app</a> requires one time setup, where you select the bus routes and the stops that you frequently take. It will then generate a unique URL (that you can book mark or save onto your phone) that will display real time prediction data for your selected routes and stops.</p>
 <h2 id="how-to-use">How to use</h2>
 <p>Go <a href="http://sutterbus.herokuapp.com/">here</a> either on your mobile Safari or on a desk top web browser. Select the routes and the bus stops that you primarily frequent. Hit the button and a unique URL will be generated for you (so you should save this one to your home screen to easily retrieve it in the future).</p>
 <p><img src="https://raw.githubusercontent.com/lambtron/nextbus/master/readme/readme.png" alt=""></p>
 <h2 id="how-it-works">How it works</h2>
-<p>I used <a href="http://www.nextbus.com/xmlFeedDocs/NextBusXMLFeed.pdf">NextBus’s XML Feed</a> to get the muni predictions.</p>
+<p>I used <a href="http://www.nextbus.com/xmlFeedDocs/NextBusXMLFeed.pdf">NextBus&#x2019;s XML Feed</a> to get the muni predictions.</p>
 <p><a href="http://sutterbus.herokuapp.com">Demo</a>. <a href="https://github.com/lambtron/nextbus">Source</a>.</p>
 <p><em>Like what you read? Share this article and follow me on <a href="http://www.twitter.com/andyjiang">Twitter</a> for random musings.</em></p>
 

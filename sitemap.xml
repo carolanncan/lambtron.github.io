@@ -6,170 +6,176 @@
 
   <url>
     <loc>http://blog.andyjiang.com</loc>
-    <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+    <lastmod>2015-08-13T22:37:16.287Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
     <url>
+      <loc>http://blog.andyjiang.com/introduction-to-metalsmith</loc>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+    <url>
       <loc>http://blog.andyjiang.com/publish-to-blog-via-slack</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/reading-position-horizontal-progress-bar</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/emojipacks-bulk-uploading-emojis-into-slack</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/metalsmith-hover-plugin-to-show-gifs</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/bottom-of-product-hunt-a-look-at-the-product-hunt-effect</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/a-twitter-banner-template-for-illustrator</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/how-to-make-a-random-text-generator</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/segment-notifications-in-slack-with-zapier</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/ladder-redefining-ping-pong-at-segment</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/bottom-of-product-hunt</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/crawling-linkedin</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/github-social-slack</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/gochipper-tweet-live-money</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/blink-speed-reading-on-the-go</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/twapchat-ephemeral-tweets</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/thunkify-non-idiomatic-nodejs-functions</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/pepper-botts</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/intermediate-cron-jobs-with-heroku</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/definitions</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/sutterbus</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/how-ifttt-mandrill-and-twilio</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/phantachat</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/welcome-to-the-a-list</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/ten-long-days-and-a-few-negligible-steps-towards-enlightenment</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/textme</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/tips-to-become-a-winning-financial-analyst</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>http://blog.andyjiang.com/the-economy</loc>
-      <lastmod>2015-08-13T17:04:10.576Z</lastmod>
+      <lastmod>2015-08-13T22:37:16.287Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
