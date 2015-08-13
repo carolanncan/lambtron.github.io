@@ -43,10 +43,7 @@
   <h1 class="Article-title Heading Heading--huge">Reading Position Horizontal Progress Bar</h1>
   <time class="Article-date" datetime="2015-08-07T00:00:00.000Z">Thursday, 6 August 2015</time>
   <div class="Article-content Prose Prose--medium">
-    <style>
-a > img { display: none; }
-a:hover > img { display: block; position: absolute; z-index: 99 }
-</style><p>I&#x2019;ve seen this in <a href="http://firstround.com/review/how-dropbox-sources-scales-and-ships-its-best-product-ideas/">some of the articles</a> on the Internet&#x2014;a subtle, horizontal bar at the top of the window that fills up as you scroll down, indicating how far you&#x2019;ve read. I came across <a href="http://stackoverflow.com/questions/19700020/change-progress-bar-value-based-on-scrolling">this solution</a> that uses jQuery, but wanted to write one using vanilla JavaScript. Here is the code!</p>
+    <p>I’ve seen this in <a href="http://firstround.com/review/how-dropbox-sources-scales-and-ships-its-best-product-ideas/">some of the articles</a> on the Internet—a subtle, horizontal bar at the top of the window that fills up as you scroll down, indicating how far you’ve read. I came across <a href="http://stackoverflow.com/questions/19700020/change-progress-bar-value-based-on-scrolling">this solution</a> that uses jQuery, but wanted to write one using vanilla JavaScript. Here is the code!</p>
 <p>You can check out a live demo right on this site. Scroll down and check out the horizontal progress bar at the top of the window!</p>
 <p>The HTML is a <code>div</code> with <code>width</code> at <code>100%</code> and a <code>span</code> inside with variable <code>width</code>. Both the <code>div</code> and <code>span</code> will be fixed at the top and will have heights of <code>2px</code>. Here is the HTML:</p>
 <pre><code class="lang-html">&lt;div id=&quot;Reading-progress&quot;&gt;
@@ -73,14 +70,14 @@ a:hover > img { display: block; position: absolute; z-index: 99 }
 }
 </code></pre>
 <p>The JavaScript attaches a <code>scroll</code> event to the <code>window</code>, calculates the scroll percentage, and updates the <code>width</code> of the <code>span</code> via <code>setAttribute()</code>. Note that using <code>setAttribute()</code> for <code>style</code> will replace all other <code>style</code>s on the element, which is why we separate the class <code>bar</code> from the id <code>Progress-bar</code>.</p>
-<pre><code class="lang-javascript">window.addEventListener(&apos;scroll&apos;, function(e) {
+<pre><code class="lang-javascript">window.addEventListener(&#39;scroll&#39;, function(e) {
   var s = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
   var body = document.body;
   var html = document.documentElement;
   var d = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
   var c = window.innerHeight;
   var position = (s / (d - c)) * 100;
-  document.getElementById(&apos;Progress-bar&apos;).setAttribute(&apos;style&apos;, &apos;width: &apos; + position + &apos;%&apos;);
+  document.getElementById(&#39;Progress-bar&#39;).setAttribute(&#39;style&#39;, &#39;width: &#39; + position + &#39;%&#39;);
 });
 </code></pre>
 <p>Have fun!</p>
