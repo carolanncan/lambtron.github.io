@@ -59,7 +59,9 @@ a:hover > img { display: block; position: absolute; z-index: 99 }
 <p>Metalsmith, at its core, takes files in a source directory, perform operations on them via plugins, and writes those files into a destination directory. Plugins can do virtually anything: create new files, filter out files, modify files based on some logic, etc (note this means that plugin order <em>does</em> matter; transformations done by one plugin can be seen and used by following plugins, making the process a modular build pipeline). The entire <a href="https://github.com/segmentio/metalsmith.io/blob/master/src/plugins.json">ecosystem of plugins</a> is what makes Metalsmith so flexible.</p>
 <p><em>Note that you have control over telling Metalsmith the location of the source and destination directories.</em></p>
 <h2 id="how-does-metalsmith-and-its-plugins-work-">How does Metalsmith (and its plugins) work?</h2>
-<p>For example, let&#x2019;s see what Metalsmith does if there are no plugins. Here is the directory (<code>./node_modules</code> is hidden):</p>
+<p>For example, let&#x2019;s see what Metalsmith does if there are no plugins.
+Here is the directory
+(<code>[./node_modules](https://docs.npmjs.com/files/folders#node-modules)</code> is hidden):</p>
 <pre><code>.
 &#x251C;&#x2500;&#x2500; src
 |   &#x251C;&#x2500;&#x2500; index.md
@@ -81,8 +83,9 @@ Metalsmith(__dirname)
 |   &#x2514;&#x2500;&#x2500; nested
 |       &#x2514;&#x2500;&#x2500; index.md
 &#x2514;&#x2500;&#x2500; index.js
-</code></pre><p>..nothing has changed (not even the text inside the markdown files). This is expected since no plugins (i.e. transforms) are being performed.</p>
-<p>Let&#x2019;s dig one level deeper and see what Metalsmith is seeing to help us build a better picture of what&#x2019;s going on. We&#x2019;ll add this really simple function (hint: it&#x2019;s a plugin!) that just logs some info:</p>
+</code></pre><p>Nothing has changed (not even the text inside the markdown files). This is expected since no plugins (i.e. transforms) are being performed.</p>
+<h2>Adding a plugin</h2>
+<p>Time to go one level deeper. We&#x2019;ll add this really simple function (hint: it&#x2019;s a plugin!) that just logs some info so we can see what Metalsmith is seeing:</p>
 <pre><code class="lang-javascript">var Metalsmith = require(&apos;metalsmith&apos;);
 
 Metalsmith(__dirname)
@@ -122,14 +125,13 @@ Metalsmith:
   _clean: true,
   _frontmatter: true }
 </code></pre>
-<blockquote>
 <p>Yes, there is a ton of junk in <code>files</code>! Just note that the property <code>contents</code> in each file is the only important thing, you can ignore everything else.</p>
-</blockquote>
 <p>We see that the argument <code>files</code> in our function is an object map of all the files in the source directory (and that <code>files[PATH].contents</code> is the body of the file). Many plugins will iterate through <code>files</code> and perform operations on them.</p>
 <p>Also, we see that the second argument, <code>metalsmith</code>, contains some metadata: plugins, directory, even an explicit object for metadata, etc. This is important, because plugins can store config or other information in metadata, or access the metadata to help with file operations.</p>
 <p>The last argument, <code>done</code>, is a function that you can call to tell Metalsmith to go to the next plugin in its queue (or <code>.build()</code>, if it&#x2019;s the last one).</p>
-<h3 id="front-matter-makes-it-easy">Front-matter Makes it Easy</h3>
-<p>Front-matter is <a href="">YAML</a> that can precede <em>any</em> file (sandwiched by two <code>---</code>). Metalsmith will automatically convert this to a key-value in the <code>file</code>&#x2018;s object. For example, the below in <code>./src/index.md</code>:</p>
+<h3 id="front-matter-makes-it-easy">Front matter Makes it Easy</h3>
+<p>Front-matter is <a href="http://learnxinyminutes.com/docs/yaml/">YAML</a> that can precede <em>any</em> file (sandwiched by two <code>---</code>). Metalsmith will automatically convert this
+to a key-value in the <code>file</code>&#x27;;s object.</p><p> For example, the below in <code>./src/index.md</code>:</p>
 <pre><code class="lang-yaml">---
 title: &quot;Teach me how to dougie&quot;
 draft: false
@@ -148,7 +150,7 @@ Hello, world!
      stats:
       { ... } }
 </code></pre>
-<p>We now have <code>title</code>, <code>draft</code>, and <code>foo</code> available for our plugins to use. Many plugins rely on the front-matter to easily transform files, such as filtering out files with <code>draft: true</code> or organizing files into different collections (e.g. <code>collection: articles</code>).</p>
+<p>We now have <code>title</code>, <code>draft</code>, and <code>foo</code> available for our plugins to use. Many plugins rely on the front matter to easily transform files, such as filtering out files with <code>draft: true</code> or organizing files into different collections (e.g. <code>collection: articles</code>).</p>
 <p>Here are some example plugins that you can check out to see how they&#x2019;re manipulating the <code>files</code> and <code>metalsmith</code> arguments.</p>
 <ul>
 <li><a href="https://github.com/segmentio/metalsmith-drafts/blob/master/lib/index.js">metalsmith-drafts</a></li>
@@ -165,7 +167,7 @@ Hello, world!
 <p>If you are building a blog generator, then here are some plugins (in order) that may help you get started (in fact, these are what we use to build the <a href="https://segment.com/blog/">Segment blog</a>):</p>
 <ul>
 <li><a href="https://github.com/segmentio/metalsmith-build-date">build date</a>: add a global <code>date</code> property to the Metalsmith metadata that can be used later (like in the atom feed)</li>
-<li><a href="https://github.com/segmentio/metalsmith-drafts">drafts</a>: delete any file that has <code>draft: true</code> in the front-matter</li>
+<li><a href="https://github.com/segmentio/metalsmith-drafts">drafts</a>: delete any file that has <code>draft: true</code> in the front matter</li>
 <li><a href="https://github.com/segmentio/metalsmith-excerpt">excerpt</a>: extract the first paragraph of each file into <code>file.excerpt</code></li>
 <li><a href="https://github.com/segmentio/metalsmith-collections">collections</a>: group files by category (this is a neat plugin that will find all files in the same category and connect them; it&#x2019;ll add the second file as a property <code>next</code> of the first file, etc.)</li>
 <li><a href="https://github.com/segmentio/metalsmith-markdown">markdown</a>: turn markdown into HTML by replacing the <code>file.contents</code> with HTML (using <a href="https://github.com/chjj/marked">marked</a>)</li>
@@ -177,15 +179,15 @@ Hello, world!
 <li><a href="https://github.com/segmentio/metalsmith-only-build">only-build</a>: delete any reference from the <code>files</code> hash that is not specified to be built (for performance)</li>
 <li><a href="https://github.com/segmentio/metalsmith-templates">templates</a>: pass each file in the <code>files</code> hash through the template denoted <code>file.template</code>, so that the written output in the destination file is the final HTML (templates is deprecated and split into two smaller plugins&#x2014;<a href="https://github.com/superwolff/metalsmith-layouts">metalsmith-layouts</a> and <a href="https://github.com/superwolff/metalsmith-in-place">metalsmith-in-place</a>)</li>
 </ul>
-<p>Still with me? Thats a lot to take in. And on top of that, some of the above plugins require specific things to include in front-matter or in variables set in the environment to work properly.</p>
+<p>Still with me? Thats a lot to take in. And on top of that, some of the above plugins require specific things to include in front matter or in variables set in the environment to work properly.</p>
 <p>Aside from blog generators (of which you could make tons of different ones with different plugins), here are some other ideas for which you can use Metalsmith:</p>
 <ul>
 <li>project scaffolder</li>
 <li>a build tool (convert, concatenate, and minifi CSS files)</li>
 <li>an ebook generator</li>
 <li>technical docs builder</li>
+<li><a href="https://github.com/segmentio/metalsmith/tree/master/examples">More examples</a>.</li>
 </ul>
-<p><a href="https://github.com/segmentio/metalsmith/tree/master/examples">More examples</a>.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>I hope this helps clarify a few things and gives you enough information to get deeper in Metalsmith! Here are some further resources to help you out:</p>
 <p><a href="http://keetology.com/blog/rebuilding-keetology">Rebuilding Keetology</a></p>
